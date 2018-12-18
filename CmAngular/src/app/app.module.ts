@@ -6,14 +6,12 @@ import { AppComponent } from './app.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
-import { OverviewComponent } from './components/overview/overview.component';
 import { ControlCheckFormComponent } from './components/control-check-form/control-check-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    OverviewComponent,
     ControlCheckFormComponent
   ],
   imports: [
