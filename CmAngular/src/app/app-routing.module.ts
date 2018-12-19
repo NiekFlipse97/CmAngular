@@ -4,9 +4,11 @@ import { AuthGuard } from './components/auth/auth-guard.service';
 import { HomeComponent } from './components/home/home.component';
 import { ControlCheckFormComponent } from './components/control-check-form/control-check-form.component';
 
+// , canActivate: [AuthGuard] deeleted this temporarely
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent },
   { path: 'controlcheck/add', component: ControlCheckFormComponent },
   
   { path: '**', redirectTo: '/home' }

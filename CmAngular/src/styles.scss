@@ -15,6 +15,7 @@
     border-radius: 20px;
     text-indent: 3%;
     height:auto;
+    background-color: white !important; 
 }
 
 .card-body{
@@ -40,6 +41,17 @@
     float:right;
     clear:both;
     margin: 10px;
+}
+
+.margin-bottom-15px {
+    margin-bottom: 15px !important;
+}
+
+.roundBtn {
+    visibility: visible;
+    height: auto;
+    border-radius: 20px;
+    color: #26446d
 }
 // -------------------{  Mixins   }-------------------
 // here
