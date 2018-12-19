@@ -10,6 +10,7 @@ export class ControlCheckFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('onSubmit');
   }
 
 }
