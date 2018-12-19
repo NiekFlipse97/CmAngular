@@ -2,12 +2,45 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
 
-
 // -------------------{ Variables }-------------------
 // here
 // -------------------{ Variables }-------------------
+.background {
+    background-color: #f3f3f3;
+}
 
+.elevated-card {
+    margin: auto;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 20px;
+    text-indent: 3%;
+    height:auto;
+}
 
+.card-body{
+    min-width: 220px;
+    margin-bottom: 40px;
+}
+
+.card-button {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-bottom: 10px;
+}
+
+.comment-field {
+    width: 95%;
+    margin: auto;
+}
+
+.button-right {    
+    float:right;
+    clear:both;
+    margin: 10px;
+}
 // -------------------{  Mixins   }-------------------
 // here
 // -------------------{  Mixins   }-------------------

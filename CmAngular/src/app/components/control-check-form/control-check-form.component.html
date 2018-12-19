@@ -1,0 +1,24 @@
+<!-- insert validation when done--> 
+<form
+*ngIf="controlCheck" 
+name="controlCheckForm"
+(ngSubmit)="onSubmit()"
+>
+  <div class="form-label-group">
+    <input
+    list="data_vaulues">
+
+      <datalist id="data_vaulues">
+        <option value="seller"></option>
+        <option value="buyer"></option>
+        <option value="amount"></option>
+        <option value="product type code"></option>
+        <option value="cats"></option>
+      </datalist>
+  </div>
+or
+  <div class="form-label-group">
+      <input
+      type="text">
+    </div>
+</form>
