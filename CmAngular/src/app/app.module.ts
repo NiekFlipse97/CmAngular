@@ -7,19 +7,25 @@ import { SigninComponent } from './components/auth/signin/signin.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
+import { AuthService } from './components/auth/auth.service';
+import { AuthGuard } from './components/auth/auth-guard.service';
+import { HomeComponent } from './components/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SigninComponent
+    SigninComponent,
+    HomeComponent
   ],
   imports: [
     NgbModule,
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
