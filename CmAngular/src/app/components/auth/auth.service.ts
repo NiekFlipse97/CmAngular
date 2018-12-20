@@ -32,6 +32,6 @@ export class AuthService {
     }
     
     getToken(): String {
-        return 'Bearer ' + localStorage.getItem('token');
+        return localStorage.getItem('token');
     }
 }
