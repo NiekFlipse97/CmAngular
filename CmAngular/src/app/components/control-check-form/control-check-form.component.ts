@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-control-check-form',
@@ -7,7 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ControlCheckFormComponent implements OnInit {
 
-  constructor() { }
+  controlCheckForm = this.fb.group({
+    datatype: [''],
+    comparator: [''],
+    value: [''],
+    variables: this.fb.array([
+      this.fb.control('')
+    ])
+
+  })
+
+  get variables() {
+    return this.controlCheckForm.get('variables') as FormArray;
+  }
+
+  addVariable() {
+    this.variables.push(this.fb.control(''));
+  }
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     console.log('onSubmit');
