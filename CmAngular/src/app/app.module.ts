@@ -13,7 +13,6 @@ import { AuthService } from './components/auth/auth.service';
 import { AuthGuard } from './components/auth/auth-guard.service';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ControlCheckFormComponent } from './components/control-check-form/control-check-form.component';
 import { ControlCheckModule } from './control-check/control-check.module';
 
 @NgModule({
@@ -21,8 +20,7 @@ import { ControlCheckModule } from './control-check/control-check.module';
     AppComponent,
     HeaderComponent,
     SigninComponent,
-    HomeComponent,
-    ControlCheckFormComponent
+    HomeComponent
   ],
   imports: [
     NgbModule,
