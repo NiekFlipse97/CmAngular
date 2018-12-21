@@ -1,0 +1,96 @@
+<!-- insert validation when done--> 
+<div id="detail-page" class="col-sm-6 col-md-8 col-lg-8 elevated-card">
+  <br/>
+
+    <div class="form-group ">
+        <h4>Title: </h4>
+            <div class="form-row margin-left-input">
+                <div class="form-input">
+                    <input  id="title" 
+                            type="text" 
+                            class="form-control"  
+                            placeholder="title">
+                    </div>
+                </div>                            
+            <br/>
+        
+
+        <h4>Description: </h4>
+            <div class="form-row margin-left-input">
+                <div class="form-input comment-field">
+                    <textarea  
+                        id="description" 
+                        type="text" 
+                        class="form-control"  
+                        placeholder="description">
+                    </textarea>
+                    </div>
+                </div>                            
+            <br/>
+        
+
+            <div formArrayName="variables">
+                <button class="roundBtn btn btn-primary margin-bottom-15px" (click)="addVariable()">Add Variable</button>
+
+                
+                <div *ngFor="let variable of variables.controls; let i=index">
+                    <!-- The repeated alias template -->
+                    <h4>Variable: </h4>  
+
+                    <div class="form-row "style="float:left">
+                            <div class="form-input margin-left" >
+                                <select class="form-control "
+                                        data-component="cm-select"
+                                        onchange="selectchanged(event)"
+                                        id="data_vaulues"
+                                        placeholder="select a value">
+                                    <option value="seller">Seller</option>
+                                    <option value="buyer">Buyer</option>
+                                    <option value="amount">Amount</option>
+                                    <option value="date">Date</option>
+                                    <option value="product-type">Product type code</option>
+                                    <option value="country">Country</option>
+                                </select>
+                                <span class="cm-icon cm-icon-open-vertical" aria-hidden="true"></span>
+                                <label>Pick a Value:</label>
+                            </div>
+                        </div>  
+                
+                        <div class="form-row " style="float:left">
+                            <div class="form-input margin-left">
+                                <select class="form-control "
+                                        data-component="cm-select"
+                                        onchange="selectchanged(event)"
+                                        id="other_vaulues"
+                                        placeholder="select a value">
+                                    <option value="greater">Greater than (&gt;)</option>
+                                    <option value="lesser">Lesser than (&lt;)</option>
+                                    <option value="equal">Equal to (&#61;)</option>
+                                </select>
+                                <span class="cm-icon cm-icon-open-vertical" aria-hidden="true"></span>
+                                <label>In comparison to :</label>
+                            </div>
+                        </div>
+
+                        <div class="form-row margin-left-input " style="float:left">
+                                <div class="form-input">
+                                    <input  id="value" 
+                                            type="text" 
+                                            class="form-control" 
+                                            placeholder="Value">
+                                    <label for="exampleFormControlInput3">Value:</label>
+                                </div>
+                            </div> 
+                    <br/><br/>
+                
+                        
+                </div>
+            </div>
+                <div class="dialog-footer">
+                    <button class="btn btn-secondary" type="button" routerLink='..'>Cancel</button>
+                    <button class="btn btn-primary roundBtn" type="submit">save</button>
+                </div>
+            </div>
+
+    <br/>
+</div>
