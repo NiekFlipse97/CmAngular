@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 
 @Component({
@@ -14,13 +14,17 @@ export class ControlCheckFormComponent implements OnInit {
     comparator: [''],
     value: [''],
     variables: this.fb.array([
-      this.fb.control('')
+      this.initOR(),
     ])
 
   })
 
   get variables() {
     return this.controlCheckForm.get('variables') as FormArray;
+  }
+
+  initOR(){
+   return new FormGroup({});
   }
 
   addVariable() {
