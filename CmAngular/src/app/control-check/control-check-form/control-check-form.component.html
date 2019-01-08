@@ -84,11 +84,11 @@
                                     <label for="exampleFormControlInput3">Value:</label>
                                 </div>
                             </div> 
-                    <br/><br/> 
-                    <button class="roundBtn btn btn-primary margin-bottom-15px" (click)="addOR()">Add row</button>   
+                    <br/><br/>  
                 </div>
+
                 <div formArrayName="ORs">
-                <div *ngFor="let ORStatements of ORs.controls; let i=index">
+                <div *ngFor="let ORStatement of ORStatement.controls; let j =index">
                         <!-- The repeated alias template -->
 
                         <div class="form-row floatleft">
@@ -139,7 +139,10 @@
                                         </div>
                                     </div> 
                             <br/><br/> 
-                </div></div>   
+                    
+                </div>
+                <button class="roundBtn btn btn-primary margin-bottom-15px" (click)="addOR()">Add row</button>  
+            </div>   
                 <button class="roundBtn btn btn-primary margin-bottom-15px" (click)="addVariable()">Add condition</button>
 
             </div>

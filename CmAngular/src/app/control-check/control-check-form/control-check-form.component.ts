@@ -15,15 +15,15 @@ export class ControlCheckFormComponent implements OnInit {
     variables: this.fb.array([
       this.initVariable(),
     ])
-
   })
+constructor(private fb: FormBuilder) { }
 
   get variables() {
     return this.controlCheckForm.get('variables') as FormArray;
   }
 
   get ORs() {
-    return this.controlCheckForm.get('ORStatements') as FormArray;
+    return this.variables.get('ORStatements') as FormArray;
 }
 
   initVariable(){
@@ -51,14 +51,18 @@ export class ControlCheckFormComponent implements OnInit {
   }
   addOR(j){
     console.log(j);
-    //const control = <FormArray>this.controlCheckForm.get('variables').controls[j].get('ORStatements');
-    //control.push(this.initOR());
+    const control = <FormArray>this.controlCheckForm.get('variables').controls[j].get('ORStatements');
+    control.push(this.initOR());
   }
 
-  constructor(private fb: FormBuilder) { }
+
 
   ngOnInit() {
-    console.log('onSubmit');
+    console.log('onInit');
   }
 
+
+  onSubmit(form){
+    
+  }
 }
