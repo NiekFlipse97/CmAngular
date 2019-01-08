@@ -10,11 +10,10 @@ import { FormArray } from '@angular/forms';
 export class ControlCheckFormComponent implements OnInit {
 
   controlCheckForm = this.fb.group({
-    datatype: [''],
-    comparator: [''],
-    value: [''],
+    title: [''],
+    description: [''],
     variables: this.fb.array([
-      this.initOR(),
+      this.initVariable(),
     ])
 
   })
@@ -23,6 +22,9 @@ export class ControlCheckFormComponent implements OnInit {
     return this.controlCheckForm.get('variables') as FormArray;
   }
 
+  initVariable(){
+    return new FormGroup({});
+   }
   initOR(){
    return new FormGroup({});
   }
