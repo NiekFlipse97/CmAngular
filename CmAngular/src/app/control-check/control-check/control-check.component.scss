@@ -2,3 +2,21 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     background-color: #C2D5F8;
 }
+
+.flow-root {
+    padding: 0 20px 0 0;
+    display: flow-root;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+
+    .grid-item {
+        padding: 20px;
+        font-size: 30px;
+        text-align: center;
+    }
+}
+  

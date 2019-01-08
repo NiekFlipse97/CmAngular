@@ -1,3 +1,19 @@
-<p>
-  signin works!
-</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="loginForm">
+    <div class="form-group">
+        <div class="form-row">
+            <div class="form-input">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Username">
+                <label for="exampleFormControlInput1">Username</label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-input">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Password">
+                <label for="exampleFormControlInput1">Password</label>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">Primary button</button>
+        </div>
+    </div>
+</form>

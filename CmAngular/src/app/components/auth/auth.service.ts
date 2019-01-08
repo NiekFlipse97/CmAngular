@@ -11,10 +11,10 @@ export class AuthService {
         private router: Router
     ) { }
 
-    signinUser(email: String, password: String) {
+    signinUser(username: String, password: String) {
         this.logout();
         this.http.post<any>(`${config.apiUrl}/api/auth`, {
-            email,
+            username,
             password
         })
             .subscribe((response) => {
