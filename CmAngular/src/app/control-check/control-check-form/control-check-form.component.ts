@@ -37,10 +37,34 @@ export class ControlCheckFormComponent implements OnInit {
     value1: new FormControl(''),
     comparator: new FormControl(''),
     value2: new FormControl(''),});
+  get ORs() {
+    return this.controlCheckForm.get('ORStatements') as FormArray;
+  }
+
+  initVariable(){
+   return new FormGroup({
+    value1: new FormControl(''),
+    comparator: new FormControl(''),
+    value2: new FormControl(''),
+    ORStatements:new FormArray([
+      this.initOR(),
+    ])
+   });
+  }
+
+  initOR() {
+    return new FormGroup({
+      value1: new FormControl(''),
+      comparator: new FormControl(''),
+      value2: new FormControl(''),
+    });
   }
 
   addVariable() {
-    this.variables.push(this.fb.control(''));
+    this.variables.push(this.initVariable());
+  }
+  addOR(){
+    this.ORs.push(this.initOR());
   }
 
   constructor(private fb: FormBuilder) { }
