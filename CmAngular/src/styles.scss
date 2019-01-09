@@ -1,21 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
-
 // -------------------{ Variables }-------------------
 // here
 // -------------------{ Variables }-------------------
+$background-collor:  #f3f3f3;
+$button-collor: #26446d;
+$border: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);;
+
+
 body {
+    background-color: $background-collor;
     margin-top: 95px;
 }
 
-.background {
-    background-color: #f3f3f3;
-}
+
 
 .elevated-card {
     margin: auto;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    box-shadow: $border;
     border-radius: 20px;
     text-indent: 3%;
     height:auto;
@@ -54,13 +57,16 @@ body {
     visibility: visible;
     height: auto;
     border-radius: 20px;
-    color: #26446d
+    color: $button-collor;
 }
 
 .elevated-button {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    box-shadow: $border;
     background-color: #C2D5F8;
 }
+
+
 // -------------------{  Mixins   }-------------------
 // here
 // -------------------{  Mixins   }-------------------
+
