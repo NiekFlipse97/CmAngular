@@ -1,0 +1,12 @@
+@import '../../../../assets/variables';
+
+.loginForm {
+    .form-row {
+        display: block;
+    }
+    .btn {
+        float: right;
+        background-color: $button-collor;
+        color: white;
+    }
+}
