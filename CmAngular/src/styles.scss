@@ -1,20 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
-
-// -------------------{ Variables }-------------------
-// here
-// -------------------{ Variables }-------------------
-$background-collor:  #f3f3f3;
-$button-collor: #26446d;
-$border: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);;
-
+@import './assets/variables';
 
 body {
     background-color: $background-collor;
     margin-top: 95px;
 }
-
-
 
 .elevated-card {
     margin: auto;
@@ -62,11 +53,5 @@ body {
 
 .elevated-button {
     box-shadow: $border;
-    background-color: #C2D5F8;
+    background-color: $button-background-color;
 }
-
-
-// -------------------{  Mixins   }-------------------
-// here
-// -------------------{  Mixins   }-------------------
-
