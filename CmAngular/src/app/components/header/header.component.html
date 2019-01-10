@@ -24,7 +24,7 @@
     <ul class="navbar-nav ml-auto logoutBtn">
       <ng-template [ngIf]="authService.isAuthenticated()">
         <li class="nav-item">
-          <a class="roundBtn nav-item btn btn-primary button-right" routerLink="/logout" [routerLinkActive]="['active']">Log out</a>
+          <a class="roundBtn nav-item btn btn-primary button-right" (click)="authService.logout()" routerLink="/signin" [routerLinkActive]="['active']">Log out</a>
         </li>
       </ng-template>
       <ng-template [ngIf]="!authService.isAuthenticated()">
