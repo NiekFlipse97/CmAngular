@@ -11,12 +11,12 @@ export class SigninComponent implements OnInit {
 
   loginForm = new FormGroup({
     username: new FormControl('', [
-        Validators.required
+      Validators.required
     ]),
     password: new FormControl('', [
-        Validators.required
+      Validators.required
     ])
-})
+  })
 
   constructor(
     private authService: AuthService
@@ -29,7 +29,9 @@ export class SigninComponent implements OnInit {
     const username = this.loginForm.get('username').value;
     const password = this.loginForm.get('password').value;
 
+    console.log(username, password);
+
     this.authService.signinUser(username, password);
-}
+  }
 
 }
