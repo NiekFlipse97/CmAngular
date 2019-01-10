@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FormArray } from '@angular/forms';
+import { Check} from '../../../models/Check.model';
+import {Variable} from '../../../models/Variable.model';
+import {noSqlStatementService} from '../../../services/noSqlStatement.service';
+import { noComponentFactoryError } from '@angular/core/src/linker/component_factory_resolver';
+//import {checkService} from '../../../services/check.service';
 
 @Component({
   selector: 'app-control-check-form',
@@ -9,7 +14,7 @@ import { FormArray } from '@angular/forms';
 })
 export class ControlCheckFormComponent implements OnInit {
   controlCheckForm: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private noslqstatementservice: noSqlStatementService) { }
 
   ngOnInit() {
 
@@ -66,9 +71,20 @@ export class ControlCheckFormComponent implements OnInit {
 
 
 
-  onSubmit(){
-    if(this.controlCheckForm.valid){
+  save(){
+    if(this.controlCheckForm.valid && this.variables != null){
       console.log('onSubmit');
+      let varList:Variable[];
+      let query;
+
+      for(var i = 0; i< this.variables.length; i++){
+        var v= new Variable({value1: this.variables[1].value1, value2: this.variables[1].value1, comparator: this.variables[1].comparator});
+        varList.push(v);
+      }
+     query =  this.noslqstatementservice.createStatement(varList);
+      console.log(query);
+    }else{
+      console.log('onSubmit failed');
     }
     
 
