@@ -8,23 +8,23 @@ import { FormArray } from '@angular/forms';
   styleUrls: ['./control-check-form.component.scss']
 })
 export class ControlCheckFormComponent implements OnInit {
+  controlCheckForm: FormGroup;
+  constructor(private fb: FormBuilder) { }
 
-  controlCheckForm = this.fb.group({
+  ngOnInit() {
+
+  this.controlCheckForm = this.fb.group({
     title: [''],
     description: [''],
     variables: this.fb.array([
       this.initVariable(),
     ])
   })
-constructor(private fb: FormBuilder) { }
 
-  get variables() {
-    return this.controlCheckForm.get('variables') as FormArray;
+  console.log('onInit');
   }
 
-  get ORs() {
-    return this.variables.get('ORStatements') as FormArray;
-}
+
 
   initVariable(){
     return this.fb.group({
@@ -45,24 +45,33 @@ constructor(private fb: FormBuilder) { }
     });
   }
 
+  get variables() {
+    return this.controlCheckForm.get('variables') as FormArray;
+  }
+
+  get ORs() {
+    return this.variables.get('ORStatements') as FormArray;
+}
+
   addVariable() {
     const control = <FormArray>this.controlCheckForm.get('variables');
     control.push(this.initVariable());
   }
   addOR(j){
     console.log(j);
-    const control = <FormArray>this.controlCheckForm.get('variables').controls[j].get('ORStatements');
-    control.push(this.initOR());
+    // const control = <FormArray>this.controlCheckForm.get('variables').controls[j].get('ORStatements');
+    // control.push(this.initOR());
   }
 
 
 
-  ngOnInit() {
-    console.log('onInit');
-  }
 
+  onSubmit(){
+    if(this.controlCheckForm.valid){
+      console.log('onSubmit');
+    }
+    
 
-  onSubmit(form){
     
   }
 }
