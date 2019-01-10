@@ -10,7 +10,7 @@
   <div class="grid-item" *ngFor="let controlCheck of controlChecks">
     <div class="card-wrapper">
       <div class="card-container">
-        <a>
+        <a routerLink="/control-checks/details/{{controlCheck._id}}">
           <div class="card card-medium bg-pink-50 ">
             <h3>{{ controlCheck.title }}</h3>
             <div class="card-content">
