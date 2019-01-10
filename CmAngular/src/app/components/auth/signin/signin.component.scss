@@ -9,4 +9,12 @@
         background-color: $button-collor;
         color: white;
     }
+    .error-message {
+        padding: 0 18px;
+        color: $error-text-color;
+        font-weight: bold;
+    }
+    .field-error {
+        border: 2px solid $error-border-color;
+    }
 }

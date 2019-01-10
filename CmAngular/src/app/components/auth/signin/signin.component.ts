@@ -9,29 +9,32 @@ import { AuthService } from '../auth.service';
 })
 export class SigninComponent implements OnInit {
 
-  loginForm = new FormGroup({
-    username: new FormControl('', [
-      Validators.required
-    ]),
-    password: new FormControl('', [
-      Validators.required
-    ])
-  })
+  loginForm: FormGroup;
 
   constructor(
     private authService: AuthService
   ) { }
 
   ngOnInit() {
+    this.loginForm = new FormGroup({
+      username: new FormControl('', [
+        Validators.required
+      ]),
+      password: new FormControl('', [
+        Validators.required
+      ])
+    })
+  }
+
+  get username() {
+    return this.loginForm.get('username');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
   }
 
   onSubmit() {
-    const username = this.loginForm.get('username').value;
-    const password = this.loginForm.get('password').value;
-
-    console.log(username, password);
-
-    this.authService.signinUser(username, password);
+    this.authService.signinUser(this.username.value, this.password.value);
   }
-
 }
