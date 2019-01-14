@@ -3,7 +3,7 @@
 >
   <br/>
     
-    <form class="form-group" formGroup="ControlCheckFormComponent">
+    <form class="form-group" [formGroup]="controlCheckForm">
         <h4>Title: </h4>
             <div class="form-row margin-left-input">
                 <div class="form-input">
@@ -30,7 +30,7 @@
             <br/>
         
 
-            <div formArray="variables">
+            <div formArrayName="variables">
                 <h4>Condition: </h4>  
                 <div *ngFor="let variable of variables.controls; let i=index">
                     <!-- The repeated alias template -->
@@ -40,8 +40,6 @@
                         <h4 class="margin-left" style="margin-top: 25px; margin-right: 15px">if</h4>
                             <div class="form-input" >
                                 <select class="form-control "
-                                        data-component="cm-select"
-                                        onchange="selectchanged(event)"
                                         formControlName="collumn"
                                         placeholder="select a value">
                                     <option value="seller">Seller</option>
@@ -87,7 +85,7 @@
                             </div> 
                     <br/><br/>  
                 </div>
-
+<!-- 
                 <div formArray="ORs">
                 <div *ngFor="let ORStatement of ORStatement.controls; let j =index">
 
@@ -141,8 +139,8 @@
                             <br/><br/> 
                                 
                 </div> 
-                <button class="roundBtn btn btn-primary margin-bottom-15px" (click)="addOR()">Add row</button> 
-            </div>  
+                <button class="roundBtn btn btn-primary margin-bottom-15px" (click)="addOR()">Add row</button>  
+            </div>  -->
                 
         
                 </div>

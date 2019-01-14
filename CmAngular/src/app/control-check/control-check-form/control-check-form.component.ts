@@ -76,8 +76,10 @@ export class ControlCheckFormComponent implements OnInit {
       console.log('onSubmit');
       let varList:Variable[];
       let query;
-
+      console.log(this.controlCheckForm);
+      console.log(this.variables);
       for(var i = 0; i< this.variables.length; i++){
+        console.log(this.variables[i]);
         let formGroupOfVariable = this.variables[i];
         var v= new Variable({collumn: formGroupOfVariable.collumn, comparator: formGroupOfVariable.comparator, value: formGroupOfVariable.value });
         varList.push(v);
