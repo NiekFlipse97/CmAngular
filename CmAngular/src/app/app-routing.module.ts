@@ -1,22 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './components/auth/auth-guard.service';
-import { HomeComponent } from './components/home/home.component';
 import { ControlCheckModule } from './control-check/control-check.module';
-
-// , canActivate: [AuthGuard] deeleted this temporarely
+import { SigninComponent } from './components/auth/signin/signin.component';
+import { FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'control-checks', loadChildren:() => ControlCheckModule },
+  { path: '', redirectTo: '/control-checks', pathMatch: 'full', canActivate: [AuthGuard]},
+  { path: 'control-checks', loadChildren:() => ControlCheckModule, canActivate: [AuthGuard] },
+  { path: 'signin', component: SigninComponent },
 
-  { path: '**', redirectTo: '/home' }
+  { path: '**', redirectTo: '/control-checks', canActivate: [AuthGuard]}
 ];
 
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserModule
+],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

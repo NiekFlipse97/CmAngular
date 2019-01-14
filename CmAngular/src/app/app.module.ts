@@ -11,16 +11,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthService } from './components/auth/auth.service';
 import { AuthGuard } from './components/auth/auth-guard.service';
-import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ControlCheckModule } from './control-check/control-check.module';
+import { ControlCheckService } from './control-check/control-check.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SigninComponent,
-    HomeComponent
+    SigninComponent
   ],
   imports: [
     NgbModule,
@@ -31,7 +30,7 @@ import { ControlCheckModule } from './control-check/control-check.module';
     ReactiveFormsModule,
     ControlCheckModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, ControlCheckService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

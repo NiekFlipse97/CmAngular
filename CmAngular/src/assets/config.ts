@@ -1,3 +1,3 @@
 export const config = {
-    "apiUrl": "http://localhost:2019"
+    "apiUrl": "https://cm-a4-api.herokuapp.com"
 }
