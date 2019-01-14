@@ -1,7 +1,7 @@
 export class Variable {
-    value1: string;
+    collumn: string;
     comparator: string;
-    value2: string;
+    value: string;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

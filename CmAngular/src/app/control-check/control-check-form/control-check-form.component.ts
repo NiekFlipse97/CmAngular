@@ -33,9 +33,9 @@ export class ControlCheckFormComponent implements OnInit {
 
   initVariable(){
     return this.fb.group({
-    value1: [''],
+    collumn: [''],
     comparator: [''],
-    value2: [''],
+    value: [''],
     ORStatements: this.fb.array([
       this.initOR(),
     ])
@@ -44,9 +44,9 @@ export class ControlCheckFormComponent implements OnInit {
 
   initOR() {
     return this.fb.group({
-      value1: [''],
+      collumn: [''],
       comparator: [''],
-      value2: [''],
+      value: [''],
     });
   }
 
@@ -78,7 +78,8 @@ export class ControlCheckFormComponent implements OnInit {
       let query;
 
       for(var i = 0; i< this.variables.length; i++){
-        var v= new Variable({value1: this.variables[1].value1, value2: this.variables[1].value1, comparator: this.variables[1].comparator});
+        let formGroupOfVariable = this.variables[i];
+        var v= new Variable({collumn: formGroupOfVariable.collumn, comparator: formGroupOfVariable.comparator, value: formGroupOfVariable.value });
         varList.push(v);
       }
      query =  this.noslqstatementservice.createStatement(varList);

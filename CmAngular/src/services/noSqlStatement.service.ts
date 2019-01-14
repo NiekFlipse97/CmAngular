@@ -22,23 +22,23 @@ export class noSqlStatementService{
 
             switch(comparator){
             case "equal":{
-                query += variable.value1 + ': "' + variable.value2 + '",'
+                query += variable.collumn + ': "' + variable.value + '",'
                 break;
             }
             case "greater":{
-                query += variable.value1 + ': $gt "' + variable.value2 + '",'
+                query += variable.collumn + ': $gt "' + variable.value + '",'
                 break;
             }
             case "lesser":{
-                query += variable.value1 + ': $lt "' + variable.value2 + '",'
+                query += variable.collumn + ': $lt "' + variable.value + '",'
                 break;
             }
             case "greaterEqual":{
-                query += variable.value1 + ': $gte "' + variable.value2 + '",'
+                query += variable.collumn + ': $gte "' + variable.value + '",'
                 break;
             }
             case "lesserEqual":{
-                query += variable.value1 + ': $lte "' + variable.value2 + '",'
+                query += variable.collumn + ': $lte "' + variable.value + '",'
                 break;
             }
 
