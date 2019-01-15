@@ -13,12 +13,11 @@
   "private": true,
   "dependencies": {
     "@angular-devkit/build-angular": "~0.7.0",
-    "@angular/cli": "~6.1.5",
-    "@angular/compiler-cli": "^6.1.0",
-    "typescript": "~2.9.2",
     "@angular/animations": "~7.0.0",
+    "@angular/cli": "~6.1.5",
     "@angular/common": "~7.0.0",
     "@angular/compiler": "~7.0.0",
+    "@angular/compiler-cli": "^6.1.0",
     "@angular/core": "~7.0.0",
     "@angular/forms": "~7.0.0",
     "@angular/http": "~7.0.0",
@@ -30,8 +29,10 @@
     "compression": "^1.7.3",
     "core-js": "^2.5.4",
     "express": "^4.16.4",
+    "ng-pick-datetime": "^6.0.16",
     "path": "^0.12.7",
     "rxjs": "~6.3.3",
+    "typescript": "~2.9.2",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
