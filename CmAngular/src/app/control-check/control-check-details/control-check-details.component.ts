@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlCheck } from '../control-check-model';
-import { CheckService } from 'src/services/check.service';
+import { ControlCheckService } from '../control-check.service';
 
 @Component({
   selector: 'app-control-check-details',
@@ -16,7 +16,9 @@ export class ControlCheckDetailsComponent implements OnInit {
     description: "Testing"
   }
 
-  constructor(private service: CheckService) { }
+  constructor(
+    private service: ControlCheckService
+  ) { }
 
   updateCheck(){
     alert("UPDATE")
