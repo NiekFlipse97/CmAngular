@@ -1,0 +1,37 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light margin-bottom-25px">
+  <a class="navbar-brand" routerLink="">
+    <!-- Brand logo-->
+    <img src="https://cdn.cm.com/cm/apple-touch-icon.png" class="nav-logo logo-size" />
+  </a>
+
+  <!-- toggle button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- back button -->
+  <button class="btn btn-icon button-icon no-margin" (click)="goBack()">
+    <span class="cm-icon cm-icon-undo" aria-hidden="true"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/control-checks">Control checks</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto logoutBtn">
+      <ng-template [ngIf]="authService.isAuthenticated()">
+        <li class="nav-item">
+          <a class="roundBtn nav-item btn btn-primary button-right" (click)="authService.logout()" routerLink="/signin" [routerLinkActive]="['active']">Log out</a>
+        </li>
+      </ng-template>
+      <ng-template [ngIf]="!authService.isAuthenticated()">
+          <li class="nav-item">
+              <a class="roundBtn nav-item btn btn-primary button-right" routerLink="/signin" [routerLinkActive]="['active']">Log in</a>
+          </li>
+      </ng-template>
+    </ul>
+  </div>
+</nav>
