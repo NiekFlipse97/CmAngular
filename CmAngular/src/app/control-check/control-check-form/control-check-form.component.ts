@@ -85,26 +85,30 @@ export class ControlCheckFormComponent implements OnInit {
 
     setColumnValue(targetValue, variable: FormGroup) {
         variable.controls.column.setValue(targetValue);
-        console.log(this.variables);
     }
 
     setComparator(targetValue, variable: FormGroup) {
         variable.controls.comparator.setValue(targetValue);
     }
 
+    setInputField(targetValue, variable: FormGroup) {
+        variable.controls.value.setValue(targetValue);
+    }
+
     onSubmit() {
         let varList: Variable[];
         let query;
-        let value = (<HTMLInputElement>document.getElementById('formValue')).value;
+        // let value = (<HTMLInputElement>document.getElementById('formValue')).value;
 
-        for (var i = 0; i < this.variables.length; i++) {
-            console.log(i);
-            let formGroupOfVariable = this.variables[i] as FormGroup;
-            console.log('FormGroupOfVariable ', formGroupOfVariable);
-            var v = new Variable({ column: formGroupOfVariable.controls.column, comparator: formGroupOfVariable.controls.comparator, value: formGroupOfVariable.controls.value });
-            varList.push(v);
+        for (let variable of this.variables.controls) {
+            console.log(variable);
+
+            // let formGroupOfVariable = this.variables[0] as FormGroup;
+            // console.log('FormGroupOfVariable ', formGroupOfVariable);
+            // var v = new Variable({ column: formGroupOfVariable.controls.column, comparator: formGroupOfVariable.controls.comparator, value: formGroupOfVariable.controls.value });
+            // varList.push(v);
         }
-        query = this.nosqlstatementservice.createStatement(varList);
+        // query = this.nosqlstatementservice.createStatement(varList);
         console.log(query);
     }
 }

@@ -176,8 +176,9 @@
                         <div class="grid-item">
                             <label>if</label>
                             <div class="form-input">
-                                <select class="form-control " data-component="cm-select" (change)="setColumnValue($event.target.value, variable)">
-                                    <option value="seller" selected>Seller</option>
+                                <select class="form-control" id="columnSelect" data-component="cm-select" (change)="setColumnValue($event.target.value, variable)">
+                                    <option value="">Select value</option>
+                                    <option value="seller">Seller</option>
                                     <option value="buyer">Buyer</option>
                                     <option value="amount">Amount</option>
                                     <option value="date">Date</option>
@@ -192,6 +193,7 @@
                             <label>is</label>
                             <div class="form-input">
                                 <select class="form-control" data-component="cm-select" (change)="setComparator($event.target.value, variable)">
+                                    <option value="">Select value</option>
                                     <option value="$gt:">Greater than </option>
                                     <option value="$lt:">Lesser than </option>
                                     <option value=":">Equal to </option>
@@ -204,7 +206,7 @@
 
                         <div class="grid-item">
                             <div class="form-input">
-                                <input id="formValue" type="text" class="form-control" placeholder="Value">
+                                <input (keyup)="setInputField($event.target.value, variable)" type="text" class="form-control" placeholder="Value">
                             </div>
                         </div>
                     </div>
