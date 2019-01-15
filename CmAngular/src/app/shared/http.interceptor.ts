@@ -11,11 +11,15 @@ export class HttpInterceptor implements HttpInterceptor {
     ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const copiedReq = req.clone({
-            headers: req.headers.set('Authorization', this.authService.getToken().toString())
-                .set('Content-Type', 'application/json')
-        });
+        if (this.authService.isAuthenticated()) {
+            const copiedReq = req.clone({
+                headers: req.headers.set('X-Access-Token', this.authService.getToken().toString())
+                    .set('Content-Type', 'application/json')
+            });
 
-        return next.handle(copiedReq);
+            return next.handle(copiedReq);
+        }  
+
+        return next.handle(req);
     }
 }
