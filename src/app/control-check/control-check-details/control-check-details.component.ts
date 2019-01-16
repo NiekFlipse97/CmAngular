@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlCheck } from '../control-check-model';
 import { ControlCheckService } from '../control-check.service';
+import { ActivatedRoute } from '@angular/router';
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Component({
   selector: 'app-control-check-details',
@@ -10,14 +12,11 @@ import { ControlCheckService } from '../control-check.service';
 
 export class ControlCheckDetailsComponent implements OnInit {
 
-  controlCheck: ControlCheck = {
-    _id: 0,
-    title: "Number 0",
-    description: "Testing"
-  }
+  controlCheck: ControlCheck;
 
   constructor(
-    private service: ControlCheckService
+    private service: ControlCheckService,
+    private route: ActivatedRoute
   ) { }
 
   updateCheck(){
@@ -25,10 +24,13 @@ export class ControlCheckDetailsComponent implements OnInit {
   }
 
   deleteCheck(){
-    this.service.getChecks()
+    // this.service.getChecks()
   }
 
   ngOnInit() {
+    this.service.getControlCheck('5c3df52353ca125220988d2c').subscribe((result) => {
+      this.controlCheck = result;
+    });
   }
 
 }
