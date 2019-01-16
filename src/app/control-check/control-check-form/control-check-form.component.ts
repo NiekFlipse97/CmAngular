@@ -97,7 +97,7 @@ export class ControlCheckFormComponent implements OnInit {
         variable.controls.value.setValue(targetValue);
     }
 
-    onSubmit() {
+    save() {
         let varList: Variable[] = [];
         let query;
 
