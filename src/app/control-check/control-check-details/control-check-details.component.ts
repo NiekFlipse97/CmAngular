@@ -19,12 +19,12 @@ export class ControlCheckDetailsComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  updateCheck(){
-    alert("UPDATE")
+  updateCheck() {
+    alert('UPDATE');
   }
 
-  deleteCheck(){
-    // this.service.getChecks()
+  deleteCheck() {
+     this.service.deleteControlCheck(this.controlCheck);
   }
 
   ngOnInit() {

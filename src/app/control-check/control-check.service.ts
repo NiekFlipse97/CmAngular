@@ -36,4 +36,8 @@ export class ControlCheckService {
 
         return this.http.post<any>(`${config.apiUrl}/api/checks`, newControl);
     }
+
+    deleteControlCheck(check: ControlCheck) {
+        this.http.delete<any>(`${config.apiUrl}/api/checks/${check._id}`).subscribe(console.log);
+    }
 }
