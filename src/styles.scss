@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import './assets/variables';
+
+body {
+    background-color: $background-collor;
+    margin-top: 95px;
+}
+
+.elevated-card {
+    margin: auto;
+    box-shadow: $border;
+    border-radius: 20px;
+    text-indent: 3%;
+    height:auto;
+    background-color: white !important; 
+}
+
+.card-body{
+    min-width: 220px;
+    margin-bottom: 40px;
+}
+
+.card-button {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-bottom: 10px;
+}
+
+.comment-field {
+    width: 90% !important;
+}
+
+.button-right {    
+    float:right;
+    clear:both;
+    margin: 10px;
+}
+
+.margin-bottom-15px {
+    margin-bottom: 15px !important;
+}
+
+.roundBtn {
+    visibility: visible;
+    height: auto;
+    border-radius: 20px;
+    color: $button-collor;
+}
+
+.elevated-button {
+    box-shadow: $border;
+    background-color: $button-background-color;
+}
