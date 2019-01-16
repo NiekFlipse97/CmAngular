@@ -5,5 +5,5 @@ export class Variable {
 
     constructor(values: Object = {}) {
         Object.assign(this, values);
-       }
+    }
 }
