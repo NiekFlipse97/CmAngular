@@ -1,5 +1,5 @@
-<!-- insert validation when done-->
-<!--<div id="detail-page" class="col-sm-10 col-md-10 col-lg-9 elevated-card" 
+<!-- insert validation when done--> 
+<div id="detail-page" class="col-sm-10 col-md-10 col-lg-9 elevated-card" 
 >
   <br/>
     
@@ -14,6 +14,7 @@
                     </div>
                 </div>                            
             <br/>
+        
 
         <h4>Description: </h4>
             <div class="form-row margin-left-input">
@@ -32,6 +33,9 @@
             <div formArray="variables">
                 <h4>Condition: </h4>  
                 <div *ngFor="let variable of variables.controls; let i=index">
+                    <!-- The repeated alias template -->
+                    
+
                     <div class="form-row floatleft">
                         <h4 class="margin-left" style="margin-top: 25px; margin-right: 15px">if</h4>
                             <div class="form-input" >
@@ -141,7 +145,7 @@
             <!-- </div>   -->
                 
         
-                <!-- </div> -->
+                </div>
         
             </form>
         
@@ -151,71 +155,4 @@
                 <button class="btn btn-primary roundBtn" type="submit" (click)='save()'>save</button>
             </div>
     <br/>
-</div>-->
-
-<div class="elevated-card">
-    <form [formGroup]="controlCheckForm" (ngSubmit)="onSubmit()" class="controlcheckform">
-        <div class="form-group">
-            <div class="form-row">
-                <div class="form-input">
-                    <input type="text" class="form-control" id="controlcheck-title" placeholder="Title" formControlName="title">
-                    <label for="controlcheck-title">Title:</label>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-input">
-                    <input type="text" class="form-control" id="controlcheck-description" placeholder="Description"
-                        formControlName="description">
-                    <label for="controlcheck-description">Description:</label>
-                </div>
-            </div>
-            <div class="form-row">
-                <div formArrayName="variables">
-                    <label>Condition: </label>
-                    <div class="grid-container" *ngFor="let variable of variables.controls; let i=index">
-                        <div class="grid-item">
-                            <label>if</label>
-                            <div class="form-input">
-                                <select class="form-control" id="columnSelect" data-component="cm-select" (change)="setColumnValue($event.target.value, variable)">
-                                    <option value="">Select value</option>
-                                    <option value="seller">Seller</option>
-                                    <option value="buyer">Buyer</option>
-                                    <option value="amount">Amount</option>
-                                    <option value="date">Date</option>
-                                    <option value="product-type">Product type code</option>
-                                    <option value="country">Country</option>
-                                </select>
-                                <span class="cm-icon cm-icon-open-vertical" aria-hidden="true"></span>
-                            </div>
-                        </div>
-
-                        <div class="grid-item">
-                            <label>is</label>
-                            <div class="form-input">
-                                <select class="form-control" data-component="cm-select" (change)="setComparator($event.target.value, variable)">
-                                    <option value="">Select value</option>
-                                    <option value="$gt:">Greater than </option>
-                                    <option value="$lt:">Lesser than </option>
-                                    <option value=":">Equal to </option>
-                                    <option value="$gt:=">Greater than or equal to</option>
-                                    <option value="$lt:=">Lesser than or equal to</option>
-                                </select>
-                                <span class="cm-icon cm-icon-open-vertical" aria-hidden="true"></span>
-                            </div>
-                        </div>
-
-                        <div class="grid-item">
-                            <div class="form-input">
-                                <input (keyup)="setInputField($event.target.value, variable)" type="text" class="form-control" placeholder="Value">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="dialog-footer">
-                <button class="btn btn-secondary" type="button" routerLink='..'>Cancel</button>
-                <button class="btn btn-primary roundBtn" type="submit">save</button>
-            </div>
-        </div>
-    </form>
 </div>
