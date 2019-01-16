@@ -6,8 +6,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
     providedIn: 'root'
 })
-
-export class NoSqlStatementService {
+export class NoSqlBuilderService {
 
     constructor(private http: HttpClient, private auth: AuthService) { }
 
