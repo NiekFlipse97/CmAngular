@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlCheck } from '../control-check-model';
+import { ControlCheckService } from '../control-check.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-control-check',
@@ -37,11 +39,16 @@ export class ControlCheckComponent implements OnInit {
     _id: 5,
     title: "six",
     description: "Date and time pickers provide the ability to select a single or a range ofdates and times."
-  }]
+  }];
 
-  constructor() { }
+  controlChecks$: Observable<ControlCheck[]>;
+
+  constructor(
+    private controlCheckService: ControlCheckService
+  ) { }
 
   ngOnInit() {
+    this.controlChecks$ = this.controlCheckService.getChecks();
   }
 
 }

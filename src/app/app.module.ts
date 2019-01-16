@@ -11,9 +11,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthService } from './components/auth/auth.service';
 import { AuthGuard } from './components/auth/auth-guard.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ControlCheckModule } from './control-check/control-check.module';
 import { ControlCheckService } from './control-check/control-check.service';
+import { HttpInterceptor } from './shared/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { ControlCheckService } from './control-check/control-check.service';
     ReactiveFormsModule,
     ControlCheckModule
   ],
-  providers: [AuthService, AuthGuard, ControlCheckService],
+  providers: [AuthService, AuthGuard, ControlCheckService, { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }
