@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { Variable } from '../../../models/Variable.model';
-import { noSqlStatementService } from '../../../services/noSqlStatement.service';
+import { NoSqlStatementService } from '../../../services/NoSqlStatement.service';
 import { ControlCheckService } from '../control-check.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class ControlCheckFormComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private nosqlstatementservice: noSqlStatementService,
+        private nosqlstatementservice: NoSqlStatementService,
         private controlCheckService: ControlCheckService
     ) { }
 
@@ -67,24 +67,6 @@ export class ControlCheckFormComponent implements OnInit {
         // control.push(this.initOR());
     }
 
-    // save() {
-    //     if (this.controlCheckForm.valid && this.variables != null) {
-    //         console.log('onSubmit');
-    //         let varList: Variable[];
-    //         let query;
-
-    //         for (var i = 0; i < this.variables.length; i++) {
-    //             let formGroupOfVariable = this.variables[i];
-    //             var v = new Variable({ column: formGroupOfVariable.column, comparator: formGroupOfVariable.comparator, value: formGroupOfVariable.value });
-    //             varList.push(v);
-    //         }
-    //         query = this.nosqlstatementservice.createStatement(varList);
-    //         console.log(query);
-    //     } else {
-    //         console.log('onSubmit failed');
-    //     }
-    // }
-
     setColumnValue(targetValue, variable: FormGroup) {
         variable.controls.column.setValue(targetValue);
     }
@@ -102,12 +84,7 @@ export class ControlCheckFormComponent implements OnInit {
         let query;
 
         for (let variable of this.variables.value) {
-
             let v = new Variable(variable);
-            
-            // let formGroupOfVariable = this.variables[0] as FormGroup;
-            // console.log('FormGroupOfVariable ', formGroupOfVariable);
-            // var v = new Variable({ column: formGroupOfVariable.controls.column, comparator: formGroupOfVariable.controls.comparator, value: formGroupOfVariable.controls.value });
             varList.push(v);
         }
         query = this.nosqlstatementservice.createStatement(varList);

@@ -15,6 +15,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ControlCheckModule } from './control-check/control-check.module';
 import { ControlCheckService } from './control-check/control-check.service';
 import { HttpInterceptor } from './shared/http.interceptor';
+import { NoSqlStatementService } from 'src/services/NoSqlStatement.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { HttpInterceptor } from './shared/http.interceptor';
     ReactiveFormsModule,
     ControlCheckModule
   ],
-  providers: [AuthService, AuthGuard, ControlCheckService, { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }], 
+  providers: [AuthService, AuthGuard, ControlCheckService, NoSqlStatementService, { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }
