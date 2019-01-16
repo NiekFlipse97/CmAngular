@@ -14,8 +14,8 @@ export class ControlCheckService {
      * Get a single ControlCheck by it's id.
      * @param id The id of the ControlCheck
      */
-    getControlCheck(id : number) : ControlCheck {
-        return null;
+    getControlCheck(id : string) {
+        return this.http.get<ControlCheck>(`${config.apiUrl}/api/checks/${id}`);
     }
 
     getChecks(): Observable<ControlCheck[]> {
