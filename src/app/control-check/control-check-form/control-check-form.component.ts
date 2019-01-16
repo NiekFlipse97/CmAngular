@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { Variable } from '../../../models/Variable.model';
-import { NoSqlStatementService } from '../../../services/NoSqlStatement.service';
 import { ControlCheckService } from '../control-check.service';
+import { NoSqlBuilderService } from 'src/services/no-sql-builder.service';
 
 @Component({
     selector: 'app-control-check-form',
@@ -15,7 +15,7 @@ export class ControlCheckFormComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private nosqlstatementservice: NoSqlStatementService,
+        private nosqlstatementservice: NoSqlBuilderService,
         private controlCheckService: ControlCheckService
     ) { }
 
