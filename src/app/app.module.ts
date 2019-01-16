@@ -15,7 +15,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ControlCheckModule } from './control-check/control-check.module';
 import { ControlCheckService } from './control-check/control-check.service';
 import { HttpInterceptor } from './shared/http.interceptor';
-import { NoSqlStatementService } from 'src/services/NoSqlStatement.service';
+import { NoSqlStatementService } from 'src/services/noSqlStatement.service';
 
 @NgModule({
   declarations: [
