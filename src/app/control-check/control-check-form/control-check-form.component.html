@@ -40,10 +40,10 @@
                                 <select class="form-control" data-component="cm-select" (change)="setComparator($event.target.value, variable)">
                                     <option value="">Select value</option>
                                     <option value="{ &quot;$gt&quot;: @value }">Greater than </option>
-                                    <option value="$lt:">Lesser than </option>
-                                    <option value=":">Equal to </option>
-                                    <option value="$gt:=">Greater than or equal to</option>
-                                    <option value="$lt:=">Lesser than or equal to</option>
+                                    <option value="{ &quot;$lt&quot;: @value }">Lesser than </option>
+                                    <option value=" @value ">Equal to </option>
+                                    <option value="{ &quot;$gte&quot;: @value }">Greater than or equal to</option>
+                                    <option value="{ &quot;$lte&quot;: @value }">Lesser than or equal to</option>
                                 </select>
                                 <span class="cm-icon cm-icon-open-vertical" aria-hidden="true"></span>
                             </div>

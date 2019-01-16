@@ -94,6 +94,7 @@ export class ControlCheckFormComponent implements OnInit {
         this.controlCheckService.createControlCheck(this.controlCheckForm.value.title, this.controlCheckForm.value.description, JSON.parse(query))
             .subscribe((response) => {
                 if (response) {
+                    console.log(response);
                     this.route.navigate(['..']);
                 }
             });
