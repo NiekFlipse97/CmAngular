@@ -4,6 +4,7 @@ import { FormArray } from '@angular/forms';
 import { Variable } from '../../../models/Variable.model';
 import { ControlCheckService } from '../control-check.service';
 import { NoSqlBuilderService } from 'src/services/no-sql-builder.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-control-check-form',
@@ -16,7 +17,8 @@ export class ControlCheckFormComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private nosqlstatementservice: NoSqlBuilderService,
-        private controlCheckService: ControlCheckService
+        private controlCheckService: ControlCheckService,
+        private route: Router
     ) { }
 
     ngOnInit() {
@@ -89,6 +91,11 @@ export class ControlCheckFormComponent implements OnInit {
         }
         query = this.nosqlstatementservice.createStatement(varList);
 
-        this.controlCheckService.createControlCheck(this.controlCheckForm.value.title, this.controlCheckForm.value.description, JSON.parse(query));
+        this.controlCheckService.createControlCheck(this.controlCheckForm.value.title, this.controlCheckForm.value.description, JSON.parse(query))
+            .subscribe((response) => {
+                if (response) {
+                    this.route.navigate(['..']);
+                }
+            });
     }
 }
