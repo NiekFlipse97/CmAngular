@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { Variable } from '../../../models/Variable.model';
-import { noSqlStatementService } from '../../../services/noSqlStatement.service';
+import { NoSqlStatementService } from '../../../services/NoSqlStatement.service';
+import { ControlCheckService } from '../control-check.service';
 
 @Component({
     selector: 'app-control-check-form',
@@ -14,7 +15,8 @@ export class ControlCheckFormComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private nosqlstatementservice: noSqlStatementService
+        private nosqlstatementservice: NoSqlStatementService,
+        private controlCheckService: ControlCheckService
     ) { }
 
     ngOnInit() {
@@ -65,24 +67,6 @@ export class ControlCheckFormComponent implements OnInit {
         // control.push(this.initOR());
     }
 
-    // save() {
-    //     if (this.controlCheckForm.valid && this.variables != null) {
-    //         console.log('onSubmit');
-    //         let varList: Variable[];
-    //         let query;
-
-    //         for (var i = 0; i < this.variables.length; i++) {
-    //             let formGroupOfVariable = this.variables[i];
-    //             var v = new Variable({ column: formGroupOfVariable.column, comparator: formGroupOfVariable.comparator, value: formGroupOfVariable.value });
-    //             varList.push(v);
-    //         }
-    //         query = this.nosqlstatementservice.createStatement(varList);
-    //         console.log(query);
-    //     } else {
-    //         console.log('onSubmit failed');
-    //     }
-    // }
-
     setColumnValue(targetValue, variable: FormGroup) {
         variable.controls.column.setValue(targetValue);
     }
@@ -96,19 +80,15 @@ export class ControlCheckFormComponent implements OnInit {
     }
 
     onSubmit() {
-        let varList: Variable[];
+        let varList: Variable[] = [];
         let query;
-        // let value = (<HTMLInputElement>document.getElementById('formValue')).value;
 
-        for (let variable of this.variables.controls) {
-            console.log(variable);
-
-            // let formGroupOfVariable = this.variables[0] as FormGroup;
-            // console.log('FormGroupOfVariable ', formGroupOfVariable);
-            // var v = new Variable({ column: formGroupOfVariable.controls.column, comparator: formGroupOfVariable.controls.comparator, value: formGroupOfVariable.controls.value });
-            // varList.push(v);
+        for (let variable of this.variables.value) {
+            let v = new Variable(variable);
+            varList.push(v);
         }
-        // query = this.nosqlstatementservice.createStatement(varList);
-        console.log(query);
+        query = this.nosqlstatementservice.createStatement(varList);
+
+        this.controlCheckService.createControlCheck(this.controlCheckForm.value.title, this.controlCheckForm.value.description, JSON.parse(query));
     }
 }

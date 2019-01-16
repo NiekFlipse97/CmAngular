@@ -18,7 +18,22 @@ export class ControlCheckService {
         return this.http.get<ControlCheck>(`${config.apiUrl}/api/checks/${id}`);
     }
 
+    /**
+     * Get all the checks
+     */
     getChecks(): Observable<ControlCheck[]> {
         return this.http.get<ControlCheck[]>(`${config.apiUrl}/api/checks`);
+    }
+
+    /**
+     * This function creates a controlcheck.
+     * @param name The name of the check
+     * @param description The description of the check
+     * @param condition The nosql query to execute the check
+     */
+    createControlCheck(name: string, description: string, condition: string) {
+        let newControl = new ControlCheck({ name, description, condition });
+
+        this.http.post<any>(`${config.apiUrl}/api/checks`, newControl).subscribe(console.log);
     }
 }

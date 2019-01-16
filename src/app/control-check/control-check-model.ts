@@ -1,7 +1,9 @@
 export class ControlCheck {
-    _id?: any;
-    title: any;
-    description: any;
+    _id?: string;
+    title: string;
+    description: string;
+    condition: JSON;
+
     constructor(values: Object = {}) {
         Object.assign(this, values);
     }
