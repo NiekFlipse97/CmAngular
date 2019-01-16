@@ -1,10 +1,10 @@
 export class Check {
-    _id: string;
+    _id?: string;
     title: string;
     description: string;
-    noSqlStatement: string;
+    condition: JSON;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);
-       }
+    }
 }
