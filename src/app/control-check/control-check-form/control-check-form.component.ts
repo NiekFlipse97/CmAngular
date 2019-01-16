@@ -36,9 +36,7 @@ export class ControlCheckFormComponent implements OnInit {
             column: [''],
             comparator: [''],
             value: [''],
-            ORStatements: this.fb.array([
-                this.initOR(),
-            ])
+            ORStatements: this.fb.array([])
         });
     }
 
@@ -61,12 +59,13 @@ export class ControlCheckFormComponent implements OnInit {
     addVariable() {
         const control = <FormArray>this.controlCheckForm.get('variables');
         control.push(this.initVariable());
+        console.log(this.controlCheckForm)
     }
 
-    addOR(j) {
-        console.log(j);
-        // const control = <FormArray>this.controlCheckForm.get('variables').controls[j].get('ORStatements');
-        // control.push(this.initOR());
+    addOR(index) {
+        const control = <FormArray>this.variables.controls[index].get('ORStatements');
+        control.push(this.initOR());
+        console.log(this.controlCheckForm);
     }
 
     setColumnValue(targetValue, variable: FormGroup) {
@@ -83,7 +82,7 @@ export class ControlCheckFormComponent implements OnInit {
 
     onSubmit() {
         let varList: Variable[] = [];
-        let query;
+        let query = '';
 
         for (let variable of this.variables.value) {
             let v = new Variable(variable);
@@ -91,10 +90,13 @@ export class ControlCheckFormComponent implements OnInit {
         }
         query = this.nosqlstatementservice.createStatement(varList);
 
+        console.log(query);
         this.controlCheckService.createControlCheck(this.controlCheckForm.value.title, this.controlCheckForm.value.description, JSON.parse(query))
             .subscribe((response) => {
                 if (response) {
                     console.log(response);
+                    varList = [];
+                    query = '';
                     this.route.navigate(['..']);
                 }
             });

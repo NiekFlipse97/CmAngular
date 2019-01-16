@@ -3,19 +3,29 @@
         <div class="form-group">
             <div class="form-row">
                 <div class="form-input">
-                    <input type="text" class="form-control" id="controlcheck-title" placeholder="Title" formControlName="title">
+                    <input 
+                        type="text"
+                        class="form-control"
+                        id="controlcheck-title"
+                        placeholder="Title"
+                        formControlName="title"
+                        [ngClass]="!controlCheckForm.controls.title.untouched && controlCheckForm.controls.title.hasError('required') ? 'field-error' : ''"
+                        required>
                     <label for="controlcheck-title">Title:</label>
+                </div>
+                <div class="error-message" *ngIf="!controlCheckForm.controls.title.untouched && controlCheckForm.controls.title.hasError('required')">
+                    Title is required.
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-input">
                     <input type="text" class="form-control" id="controlcheck-description" placeholder="Description"
-                        formControlName="description">
+                        formControlName="description" required>
                     <label for="controlcheck-description">Description:</label>
                 </div>
             </div>
             <div class="form-row">
-                <div formArrayName="variables">
+                <div formArrayName="variables" class="width-100">
                     <label>Condition: </label>
                     <div class="grid-container" *ngFor="let variable of variables.controls; let i=index">
                         <div class="grid-item">
@@ -26,7 +36,7 @@
                                     <option value="Seller">Seller</option>
                                     <option value="Buyer">Buyer</option>
                                     <option value="MerchantAmount">Amount</option>
-                                    <option value="Date">Date</option>
+                                    <option value="PaymentCreatedOn">Date</option>
                                     <option value="Product-type">Product type code</option>
                                     <option value="Country">Country</option>
                                 </select>
@@ -41,25 +51,29 @@
                                     <option value="">Select value</option>
                                     <option value="{ &quot;$gt&quot;: @value }">Greater than </option>
                                     <option value="{ &quot;$lt&quot;: @value }">Lesser than </option>
-                                    <option value=" @value ">Equal to </option>
+                                    <option value="{ &quot;$eq&quot;: @value }">Equal to </option>
                                     <option value="{ &quot;$gte&quot;: @value }">Greater than or equal to</option>
                                     <option value="{ &quot;$lte&quot;: @value }">Lesser than or equal to</option>
                                 </select>
                                 <span class="cm-icon cm-icon-open-vertical" aria-hidden="true"></span>
                             </div>
                         </div>
-
                         <div class="grid-item">
                             <div class="form-input">
-                                <input (keyup)="setInputField($event.target.value, variable)" type="text" class="form-control" placeholder="Value">
+                                <input (keyup)="setInputField($event.target.value, variable)" type="text" class="form-control"
+                                    placeholder="Value">
                             </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary roundBtn" type="button" (click)="addOR(i)">Add</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="dialog-footer">
+                <button type="button" class="btn btn-primary roundBtn left" (click)="addVariable()">Add Condition</button>
                 <button class="btn btn-secondary" type="button" routerLink='..'>Cancel</button>
-                <button class="btn btn-primary roundBtn" type="submit">save</button>
+                <button class="btn btn-primary roundBtn" type="submit" [disabled]="!controlCheckForm.valid">save</button>
             </div>
         </div>
     </form>
