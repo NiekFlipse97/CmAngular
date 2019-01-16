@@ -32,8 +32,12 @@ export class ControlCheckService {
      * @param condition The nosql query to execute the check
      */
     createControlCheck(name: string, description: string, condition: string) {
-        let newControl = new ControlCheck({ name, description, condition });
+        const newControl = new ControlCheck({ name, description, condition });
 
         this.http.post<any>(`${config.apiUrl}/api/checks`, newControl).subscribe(console.log);
+    }
+
+    deleteControlCheck(check: ControlCheck) {
+        this.http.delete<any>(`${config.apiUrl}/api/checks/${check._id}`).subscribe(console.log);
     }
 }
