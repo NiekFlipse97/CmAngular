@@ -25,7 +25,7 @@ export class ControlCheckDetailsComponent implements OnInit {
   }
 
   deleteCheck(){
-    this.service.getChecks()
+    // this.service.getChecks()
   }
 
   ngOnInit() {
