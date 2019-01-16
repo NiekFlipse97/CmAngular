@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { Variable } from '../../../models/Variable.model';
 import { noSqlStatementService } from '../../../services/noSqlStatement.service';
+import { ControlCheckService } from '../control-check.service';
 
 @Component({
     selector: 'app-control-check-form',
@@ -14,7 +15,8 @@ export class ControlCheckFormComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private nosqlstatementservice: noSqlStatementService
+        private nosqlstatementservice: noSqlStatementService,
+        private controlCheckService: ControlCheckService
     ) { }
 
     ngOnInit() {
@@ -96,19 +98,20 @@ export class ControlCheckFormComponent implements OnInit {
     }
 
     onSubmit() {
-        let varList: Variable[];
+        let varList: Variable[] = [];
         let query;
-        // let value = (<HTMLInputElement>document.getElementById('formValue')).value;
 
-        for (let variable of this.variables.controls) {
-            console.log(variable);
+        for (let variable of this.variables.value) {
 
+            let v = new Variable(variable);
+            
             // let formGroupOfVariable = this.variables[0] as FormGroup;
             // console.log('FormGroupOfVariable ', formGroupOfVariable);
             // var v = new Variable({ column: formGroupOfVariable.controls.column, comparator: formGroupOfVariable.controls.comparator, value: formGroupOfVariable.controls.value });
-            // varList.push(v);
+            varList.push(v);
         }
-        // query = this.nosqlstatementservice.createStatement(varList);
-        console.log(query);
+        query = this.nosqlstatementservice.createStatement(varList);
+
+        this.controlCheckService.createControlCheck(this.controlCheckForm.value.title, this.controlCheckForm.value.description, JSON.parse(query));
     }
 }

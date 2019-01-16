@@ -1,5 +1,5 @@
 export class Variable {
-    collumn: string;
+    column: string;
     comparator: string;
     value: string;
 

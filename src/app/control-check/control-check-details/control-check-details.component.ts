@@ -28,7 +28,7 @@ export class ControlCheckDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getControlCheck('5c3df52353ca125220988d2c').subscribe((result) => {
+    this.service.getControlCheck(this.route.snapshot.paramMap.get('id')).subscribe((result) => {
       this.controlCheck = result;
     });
   }
