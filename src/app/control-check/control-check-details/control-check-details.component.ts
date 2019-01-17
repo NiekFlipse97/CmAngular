@@ -3,6 +3,10 @@ import { ControlCheck } from '../models/control-check-model';
 import { ControlCheckService } from '../services/control-check.service';
 import { ActivatedRoute } from '@angular/router';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { AlertCalculatorService } from '../../../services/alert-calculator.service';
+import { Alert } from '../models/alert.model';
+import { Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-control-check-details',
@@ -11,14 +15,30 @@ import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 })
 
 export class ControlCheckDetailsComponent implements OnInit {
+  
+@Input() check: ControlCheck;
+  
+  alerts: Alert[] = [];
   dataSource: Object;
   chartConfig: Object;
   controlCheck: ControlCheck;
-
+  today: Date = new Date(Date.now());
+  
+  
   constructor(
     private service: ControlCheckService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private alertCalculatorservice: AlertCalculatorService
+  ){
+    this.chartConfig = {
+      width: '500',
+      height: '300',
+      type: 'column2d',
+      dataFormat: 'json',
+    };
+
+    this.loadGraphWithDate()
+  }
 
   updateCheck() {
     alert('UPDATE');
@@ -29,17 +49,20 @@ export class ControlCheckDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.getInfo();
+  }
+
+  getInfo(){
     this.service.getControlCheck(this.route.snapshot.paramMap.get('id')).subscribe((result: ControlCheck) => {
       this.controlCheck = result;
+      this.alerts = result.alerts;
+      this.loadGraphWithDate();
+      console.log("updated the alert")
+      setTimeout(() => {this.getInfo()}, 5000)
     });
+  }
 
-    this.chartConfig = {
-      width: '450',
-      height: '300',
-      type: 'column2d',
-      dataFormat: 'json',
-    };
-
+  loadGraphWithDate(){
     this.dataSource = {
       "chart": {
         "caption": "the amount of failed checks of the last week",
@@ -49,27 +72,31 @@ export class ControlCheckDetailsComponent implements OnInit {
         "theme": "fusion",
       },
       "data": [{
-        "label": "7 day ago",
-        "value": "290"
+        "label": this.alertCalculatorservice.getdate(6),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 6)
       }, {
-        "label": "6 day ago",
-        "value": "260"
+        "label": this.alertCalculatorservice.getdate(5),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 5)
       }, {
-        "label": "5 day ago",
-        "value": "180"
+        "label": this.alertCalculatorservice.getdate(4),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 4)
       }, {
-        "label": "4 day ago",
-        "value": "140"
+        "label": this.alertCalculatorservice.getdate(3),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 3)
       }, {
-        "label": "3 day ago",
-        "value": "115"
+        "label": this.alertCalculatorservice.getdate(2),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 2)
       }, {
-        "label": "yesterday",
-        "value": "100"
-      }, {
-        "label": "today",
-        "value": "30"
+        "label": this.alertCalculatorservice.getdate(1),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 1)
+      }, 
+      {
+        "label": this.today.toDateString(),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 0)
       }]
+
     };
+    
+    //setTimeout(() => {this.loadGraphWithDate()}, 5000)
   }
 }
