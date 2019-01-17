@@ -6,12 +6,13 @@ export class AlertCalculatorService {
     amount:number = 0;
 
     public dayOne(Alerts: Alert[]){
+        console.log(this.today.toDateString())
         if(Alerts == null){
-            return 0;
+            return this.amount;
         }
         for(var i = 0; i <  Alerts.length; i++){
             let alert = Alerts[i];
-            if(alert.createdOn.getDay == this.today.getDay 
+            if(alert.createdOn.getDate == this.today.getDate 
                 && alert.createdOn.getMonth == this.today.getMonth
                 && alert.createdOn.getFullYear == this.today.getFullYear){
                     this.amount += 1;
@@ -21,16 +22,17 @@ export class AlertCalculatorService {
     }
 
     public dayTwo(Alerts: Alert[]){
-        let newDate:Date;
-        newDate.setDate(this.today.getDate() - 1)
+        let newDate:Date = this.today;
+        let day = this.today.getDate()-1;
+        newDate.setDate(day);
 
         if(Alerts == null){
-            return 0;
+            return this.amount;
         }
         
         for(var i = 0; i <  Alerts.length; i++){
             let alert = Alerts[i];
-            if(alert.createdOn.getDay == newDate.getDay 
+            if(alert.createdOn.getDate == newDate.getDate 
                 && alert.createdOn.getMonth == newDate.getMonth
                 && alert.createdOn.getFullYear == newDate.getFullYear){
                     this.amount += 1;
@@ -40,12 +42,18 @@ export class AlertCalculatorService {
     }
 
     public dayThree(Alerts: Alert[]){
-        let newDate:Date;
-        newDate.setDate(this.today.getDate() - 2)
+        let newDate:Date = this.today;
+        let day = this.today.getDate()-2;
+        newDate.setDate(day);
+
+
+        if(Alerts == null){
+            return this.amount;
+        }
 
         for(var i = 0; i <  Alerts.length; i++){
             let alert = Alerts[i];
-            if(alert.createdOn.getDay == newDate.getDay 
+            if(alert.createdOn.getDate == newDate.getDate
                 && alert.createdOn.getMonth == newDate.getMonth
                 && alert.createdOn.getFullYear == newDate.getFullYear){
                     this.amount += 1;
@@ -55,8 +63,14 @@ export class AlertCalculatorService {
     }
 
     public dayFour(Alerts: Alert[]){
-        let newDate:Date;
-        newDate.setDate(this.today.getDate() - 3)
+        let newDate:Date = this.today;
+        let day = this.today.getDate()-3;
+        newDate.setDate(day);
+
+
+        if(Alerts == null){
+            return this.amount;
+        }
 
         if(Alerts == null){
             return 0;
@@ -64,7 +78,7 @@ export class AlertCalculatorService {
 
         for(var i = 0; i <  Alerts.length; i++){
             let alert = Alerts[i];
-            if(alert.createdOn.getDay == newDate.getDay 
+            if(alert.createdOn.getDate == newDate.getDate
                 && alert.createdOn.getMonth == newDate.getMonth
                 && alert.createdOn.getFullYear == newDate.getFullYear){
                     this.amount += 1;
@@ -74,8 +88,14 @@ export class AlertCalculatorService {
     }
 
     public dayFive(Alerts: Alert[]){
-        let newDate:Date;
-        newDate.setDate(this.today.getDate() - 4)
+        let newDate:Date = this.today;
+        let day = this.today.getDate()-4;
+        newDate.setDate(day);
+
+
+        if(Alerts == null){
+            return this.amount;
+        }
 
         if(Alerts == null){
             return 0;
@@ -83,7 +103,7 @@ export class AlertCalculatorService {
 
         for(var i = 0; i <  Alerts.length; i++){
             let alert = Alerts[i];
-            if(alert.createdOn.getDay == newDate.getDay 
+            if(alert.createdOn.getDate == newDate.getDate 
                 && alert.createdOn.getMonth == newDate.getMonth
                 && alert.createdOn.getFullYear == newDate.getFullYear){
                     this.amount += 1;
@@ -93,8 +113,10 @@ export class AlertCalculatorService {
     }
 
     public daySix(Alerts: Alert[]){
-        let newDate:Date;
-        newDate.setDate(this.today.getDate() - 5)
+        let newDate:Date = this.today;
+        let day = this.today.getDate()-5;
+        newDate.setDate(day);
+
 
         if(Alerts == null){
             return 0;
@@ -102,7 +124,7 @@ export class AlertCalculatorService {
 
         for(var i = 0; i <  Alerts.length; i++){
             let alert = Alerts[i];
-            if(alert.createdOn.getDay == newDate.getDay 
+            if(alert.createdOn.getDate == newDate.getDate 
                 && alert.createdOn.getMonth == newDate.getMonth
                 && alert.createdOn.getFullYear == newDate.getFullYear){
                     this.amount += 1;
@@ -112,8 +134,10 @@ export class AlertCalculatorService {
     }
 
     public daySeven(Alerts: Alert[]){
-        let newDate:Date;
-        newDate.setDate(this.today.getDate() - 6)
+        let newDate:Date = this.today;
+        let day = this.today.getDate()-6;
+        newDate.setDate(day);
+
 
         if(Alerts == null){
             return 0;
@@ -121,12 +145,19 @@ export class AlertCalculatorService {
 
         for(var i = 0; i <  Alerts.length; i++){
             let alert = Alerts[i];
-            if(alert.createdOn.getDay == newDate.getDay 
+            if(alert.createdOn.getDate== newDate.getDate 
                 && alert.createdOn.getMonth == newDate.getMonth
                 && alert.createdOn.getFullYear == newDate.getFullYear){
                     this.amount += 1;
             }
             return this.amount;
         }
+    }
+
+    public getdate(days: number){
+        let newDate:Date = this.today;
+        let day = this.today.getDate()-days;
+        newDate.setDate(day);
+        return newDate.toDateString();
     }
 }
