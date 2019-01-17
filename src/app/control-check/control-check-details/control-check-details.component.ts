@@ -50,17 +50,22 @@ export class ControlCheckDetailsComponent implements OnInit {
 
   ngOnInit() {
   
+
+      this.getInfo();
+    
+  }
+
+  getInfo(){
     this.service.getControlCheck(this.route.snapshot.paramMap.get('id')).subscribe((result: ControlCheck) => {
       this.controlCheck = result;
       this.alerts = result.alerts;
       this.loadGraphWithDate();
-
-      setTimeout(() => {this.ngOnInit()}, 5000)
+      console.log("updated the alert")
+      setTimeout(() => {this.getInfo()}, 5000)
     });
   }
 
   loadGraphWithDate(){
-    console.log("graph updated")
     this.dataSource = {
       "chart": {
         "caption": "the amount of failed checks of the last week",
