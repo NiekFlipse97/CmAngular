@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { Variable } from '../../../models/Variable.model';
-import { NoSqlStatementService } from '../../../services/NoSqlStatement.service';
 import { ControlCheckService } from '../control-check.service';
+import { NoSqlBuilderService } from 'src/services/no-sql-builder.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-control-check-form',
@@ -15,8 +17,10 @@ export class ControlCheckFormComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private nosqlstatementservice: NoSqlStatementService,
-        private controlCheckService: ControlCheckService
+        private nosqlstatementservice: NoSqlBuilderService,
+        private controlCheckService: ControlCheckService,
+        private route: Router,
+        private snackBar: MatSnackBar
     ) { }
 
     ngOnInit() {
@@ -34,9 +38,7 @@ export class ControlCheckFormComponent implements OnInit {
             column: [''],
             comparator: [''],
             value: [''],
-            ORStatements: this.fb.array([
-                this.initOR(),
-            ])
+            ORStatements: this.fb.array([])
         });
     }
 
@@ -59,12 +61,13 @@ export class ControlCheckFormComponent implements OnInit {
     addVariable() {
         const control = <FormArray>this.controlCheckForm.get('variables');
         control.push(this.initVariable());
+        console.log(this.controlCheckForm)
     }
 
-    addOR(j) {
-        console.log(j);
-        // const control = <FormArray>this.controlCheckForm.get('variables').controls[j].get('ORStatements');
-        // control.push(this.initOR());
+    addOR(index) {
+        const control = <FormArray>this.variables.controls[index].get('ORStatements');
+        control.push(this.initOR());
+        console.log(this.controlCheckForm);
     }
 
     setColumnValue(targetValue, variable: FormGroup) {
@@ -81,7 +84,7 @@ export class ControlCheckFormComponent implements OnInit {
 
     onSubmit() {
         let varList: Variable[] = [];
-        let query;
+        let query = '';
 
         for (let variable of this.variables.value) {
             let v = new Variable(variable);
@@ -89,6 +92,28 @@ export class ControlCheckFormComponent implements OnInit {
         }
         query = this.nosqlstatementservice.createStatement(varList);
 
-        this.controlCheckService.createControlCheck(this.controlCheckForm.value.title, this.controlCheckForm.value.description, JSON.parse(query));
+        this.controlCheckService.createControlCheck(this.controlCheckForm.value.title, this.controlCheckForm.value.description, JSON.parse(query))
+            .subscribe((response) => {
+
+                if (response.error.code === 400) {
+                    console.log(response);
+                    console.log('inside the error');
+                    this.openSnackBar('The condition is invalid', 'Close');
+                    return;
+                }
+
+                if (response.status === 201) {
+                    varList = [];
+                    query = '';
+                    this.route.navigate(['..']);
+                }
+            });
+    }
+
+    openSnackBar(message: string, action: string) {
+        this.snackBar.open(message, action, {
+            duration: 5000,
+            verticalPosition: 'top'
+        });
     }
 }
