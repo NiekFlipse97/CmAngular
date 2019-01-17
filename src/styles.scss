@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import './assets/variables';
 
 body {
@@ -13,6 +14,7 @@ body {
     border-radius: 20px;
     text-indent: 3%;
     height:auto;
+    padding: 20px;
     background-color: white !important; 
 }
 
@@ -54,4 +56,16 @@ body {
 .elevated-button {
     box-shadow: $border;
     background-color: $button-background-color;
+}
+
+snack-bar-container {
+    position: absolute;
+    right: 0;
+    top: 9%;
+    background-color: $error-border-color !important;
+    color: white !important;
+
+    button {
+        color: white !important;
+    }
 }

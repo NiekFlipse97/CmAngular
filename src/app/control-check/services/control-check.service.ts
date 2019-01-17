@@ -1,21 +1,26 @@
-import { Injectable } from "@angular/core";
-import { ControlCheck } from "./control-check-model";
+import { Injectable } from '@angular/core';
+import { ControlCheck } from "../models/control-check-model";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { config } from "src/assets/config";
+import { catchError, map, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable()
 export class ControlCheckService {
     constructor(
         private http: HttpClient
-    ) {}
+    ) { }
 
     /**
      * Get a single ControlCheck by it's id.
      * @param id The id of the ControlCheck
      */
-    getControlCheck(id : string) {
-        return this.http.get<ControlCheck>(`${config.apiUrl}/api/checks/${id}`);
+    getControlCheck(id: string): Observable<ControlCheck> {
+        return this.http.get<ControlCheck>(`${config.apiUrl}/api/checks/${id}`)
+            .pipe(
+                map((result) => new ControlCheck(result))
+            );
     }
 
     /**
@@ -31,10 +36,13 @@ export class ControlCheckService {
      * @param description The description of the check
      * @param condition The nosql query to execute the check
      */
-    createControlCheck(name: string, description: string, condition: string) {
-        const newControl = new ControlCheck({ name, description, condition });
+    createControlCheck(name: string, description: string, condition: string): Observable<any> {
+        let newControl = new ControlCheck({ name, description, condition });
 
-        this.http.post<any>(`${config.apiUrl}/api/checks`, newControl).subscribe(console.log);
+        return this.http.post<any>(`${config.apiUrl}/api/checks`, newControl)
+            .pipe(
+                catchError(val => of(val)
+            ));
     }
 
     deleteControlCheck(check: ControlCheck) {
