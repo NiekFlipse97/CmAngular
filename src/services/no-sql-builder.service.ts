@@ -14,7 +14,11 @@ export class NoSqlBuilderService {
         for (var i = 0; i < variables.length; i++) {
             var variable: Variable = variables[i];
 
-            query += ` "${variable.column}": ${variable.comparator.replace('@value', variable.value)}`;
+            if (variables.length - 1 === i) {
+                query += `"${variable.column}": ${variable.comparator.replace('@value', variable.value)}`;
+            } else {
+                query += `"${variable.column}": ${variable.comparator.replace('@value', variable.value)}, `;
+            }
         }
 
         return query + "}";
