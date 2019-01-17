@@ -1,5 +1,6 @@
 import { Variable } from "../models/Variable.model";
 import { Injectable } from '@angular/core';
+import { isString } from "util";
 
 @Injectable({
     providedIn: 'root'
@@ -8,6 +9,14 @@ export class NoSqlBuilderService {
 
     constructor() { }
 
+    private addQuotesIfString(value) {
+        if (isString(value)) {
+            return `"${value}"`;
+        }
+
+        return value;
+    }
+
     public createStatement(variables: Variable[]) {
         var query: string = "{ ";
 
@@ -15,9 +24,9 @@ export class NoSqlBuilderService {
             var variable: Variable = variables[i];
 
             if (variables.length - 1 === i) {
-                query += `"${variable.column}": ${variable.comparator.replace('@value', variable.value)}`;
+                query += `"${variable.column}": ${variable.comparator.replace('@value', this.addQuotesIfString(variable.value))}`;
             } else {
-                query += `"${variable.column}": ${variable.comparator.replace('@value', variable.value)}, `;
+                query += `"${variable.column}": ${variable.comparator.replace('@value', this.addQuotesIfString(variable.value))}, `;
             }
         }
 
