@@ -18,7 +18,7 @@ export class ControlCheckDetailsComponent implements OnInit {
   
 @Input() check: ControlCheck;
   
-  alerts: Alert[];
+  alerts: Alert[] = [];
   dataSource: Object;
   chartConfig: Object;
   controlCheck: ControlCheck;
@@ -37,38 +37,7 @@ export class ControlCheckDetailsComponent implements OnInit {
       dataFormat: 'json',
     };
 
-    this.dataSource = {
-      "chart": {
-        "caption": "the amount of failed checks of the last week",
-        "xAxisName": "day",
-        "yAxisName": "failed checks",
-        "numberSuffix": " checks",
-        "theme": "fusion",
-      },
-      "data": [{
-        "label": this.alertCalculatorservice.getdate(6),
-        "value": this.alertCalculatorservice.daySeven(this.alerts)
-      }, {
-        "label": this.alertCalculatorservice.getdate(5),
-        "value": this.alertCalculatorservice.daySix(this.alerts)
-      }, {
-        "label": this.alertCalculatorservice.getdate(4),
-        "value": this.alertCalculatorservice.dayFive(this.alerts)
-      }, {
-        "label": this.alertCalculatorservice.getdate(3),
-        "value": this.alertCalculatorservice.dayFour(this.alerts)
-      }, {
-        "label": this.alertCalculatorservice.getdate(2),
-        "value": this.alertCalculatorservice.dayThree(this.alerts)
-      }, {
-        "label": this.alertCalculatorservice.getdate(1),
-        "value": this.alertCalculatorservice.dayTwo(this.alerts)
-      }, 
-      {
-        "label": this.today.toDateString(),
-        "value": this.alertCalculatorservice.dayOne(this.alerts)
-      }]
-    };
+    this.loadGraphWithDate();
   }
 
   updateCheck() {
@@ -82,8 +51,43 @@ export class ControlCheckDetailsComponent implements OnInit {
   ngOnInit() {
     this.service.getControlCheck(this.route.snapshot.paramMap.get('id')).subscribe((result: ControlCheck) => {
       this.controlCheck = result;
-      console.log(result.alerts);
+      this.alerts = result.alerts;
+      this.loadGraphWithDate();
     });
-      
+  }
+
+  loadGraphWithDate(){
+    this.dataSource = {
+      "chart": {
+        "caption": "the amount of failed checks of the last week",
+        "xAxisName": "day",
+        "yAxisName": "failed checks",
+        "numberSuffix": " checks",
+        "theme": "fusion",
+      },
+      "data": [{
+        "label": this.alertCalculatorservice.getdate(6),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 6)
+      }, {
+        "label": this.alertCalculatorservice.getdate(5),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 5)
+      }, {
+        "label": this.alertCalculatorservice.getdate(4),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 4)
+      }, {
+        "label": this.alertCalculatorservice.getdate(3),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 3)
+      }, {
+        "label": this.alertCalculatorservice.getdate(2),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 2)
+      }, {
+        "label": this.alertCalculatorservice.getdate(1),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 1)
+      }, 
+      {
+        "label": this.today.toDateString(),
+        "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 0)
+      }]
+    };
   }
 }
