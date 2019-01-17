@@ -4,8 +4,9 @@ import { ControlCheckService } from '../services/control-check.service';
 import { ActivatedRoute } from '@angular/router';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { AlertCalculatorService } from '../../../services/alert-calculator.service';
-import { Alert } from '../alert.model';
+import { Alert } from '../models/alert.model';
 import { Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-control-check-details',
@@ -14,67 +15,20 @@ import { Input } from '@angular/core';
 })
 
 export class ControlCheckDetailsComponent implements OnInit {
+  
+@Input() check: ControlCheck;
+  
+  alerts: Alert[];
   dataSource: Object;
   chartConfig: Object;
   controlCheck: ControlCheck;
+  today: Date = new Date(Date.now());
 
   constructor(
     private service: ControlCheckService,
     private route: ActivatedRoute,
     private alertCalculatorservice: AlertCalculatorService
   ){
-    this.chartConfig = {
-      width: '450',
-      height: '300',
-      type: 'column2d',
-      dataFormat: 'json',};
-      
-      this.dataSource = {
-        "chart": {
-          "caption": "the amount of failed checks of the last week",
-          "xAxisName": "day",
-          "yAxisName": "failed checks",
-          "numberSuffix": " checks",
-          "theme": "fusion",
-        },
-        "data": [{
-          "label": "7 day ago",
-          "value": alertCalculatorservice.daySeven()
-        }, {
-          "label": "6 day ago",
-          "value": "3"
-        }, {
-          "label": "5 day ago",
-          "value": "4"
-        }, {
-          "label": "4 day ago",
-          "value": "8"
-        }, {
-          "label": "3 day ago",
-          "value": "2"
-        }, {
-          "label": "yesterday",
-          "value": "1"
-        }, {
-          "label": "today",
-          "value": "3"
-        }]
-      };
-  }
-
-  updateCheck() {
-    alert('UPDATE');
-  }
-
-  deleteCheck() {
-    this.service.deleteControlCheck(this.controlCheck);
-  }
-
-  ngOnInit() {
-    this.service.getControlCheck(this.route.snapshot.paramMap.get('id')).subscribe((result: ControlCheck) => {
-      this.controlCheck = result;
-    });
-
     this.chartConfig = {
       width: '450',
       height: '300',
@@ -91,27 +45,42 @@ export class ControlCheckDetailsComponent implements OnInit {
         "theme": "fusion",
       },
       "data": [{
-        "label": "7 day ago",
-        "value": "290"
+        "label": (this.today.getDate() -6),
+        "value": alertCalculatorservice.daySeven(this.alerts)
       }, {
-        "label": "6 day ago",
-        "value": "260"
+        "label": (this.today.getDate() -5),
+        "value": alertCalculatorservice.daySix(this.alerts)
       }, {
-        "label": "5 day ago",
-        "value": "180"
+        "label": (this.today.getDate() -4),
+        "value": alertCalculatorservice.dayFive(this.alerts)
       }, {
-        "label": "4 day ago",
-        "value": "140"
+        "label": (this.today.getDate() -3),
+        "value": alertCalculatorservice.dayFour(this.alerts)
       }, {
-        "label": "3 day ago",
-        "value": "115"
+        "label": (this.today.getDate() -2),
+        "value": alertCalculatorservice.dayThree(this.alerts)
       }, {
-        "label": "yesterday",
-        "value": "100"
+        "label": (this.today.getDate() -1),
+        "value": alertCalculatorservice.dayTwo(this.alerts)
       }, {
-        "label": "today",
-        "value": "30"
+        "label": (this.today.getDate()),
+        "value": alertCalculatorservice.dayOne(this.alerts)
       }]
     };
+  }
+
+  updateCheck() {
+    alert('UPDATE');
+  }
+
+  deleteCheck() {
+    this.service.deleteControlCheck(this.controlCheck);
+  }
+
+  ngOnInit() {
+    this.service.getControlCheck(this.route.snapshot.paramMap.get('id')).subscribe((result: ControlCheck) => {
+      this.controlCheck = result;
+    });
+      
   }
 }

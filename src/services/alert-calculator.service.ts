@@ -1,4 +1,4 @@
-import {Alert} from "../app/control-check/alert.model";
+import {Alert} from "../app/control-check/models/alert.model";
 
 export class AlertCalculatorService {
     constructor() { }
@@ -6,6 +6,9 @@ export class AlertCalculatorService {
     amount:number = 0;
 
     public dayOne(Alerts: Alert[]){
+        if(Alerts == null){
+            return 0;
+        }
         for(var i = 0; i <  Alerts.length; i++){
             let alert = Alerts[i];
             if(alert.createdOn.getDay == this.today.getDay 
@@ -21,6 +24,10 @@ export class AlertCalculatorService {
         let newDate:Date;
         newDate.setDate(this.today.getDate() - 1)
 
+        if(Alerts == null){
+            return 0;
+        }
+        
         for(var i = 0; i <  Alerts.length; i++){
             let alert = Alerts[i];
             if(alert.createdOn.getDay == newDate.getDay 
@@ -51,6 +58,10 @@ export class AlertCalculatorService {
         let newDate:Date;
         newDate.setDate(this.today.getDate() - 3)
 
+        if(Alerts == null){
+            return 0;
+        }
+
         for(var i = 0; i <  Alerts.length; i++){
             let alert = Alerts[i];
             if(alert.createdOn.getDay == newDate.getDay 
@@ -65,6 +76,10 @@ export class AlertCalculatorService {
     public dayFive(Alerts: Alert[]){
         let newDate:Date;
         newDate.setDate(this.today.getDate() - 4)
+
+        if(Alerts == null){
+            return 0;
+        }
 
         for(var i = 0; i <  Alerts.length; i++){
             let alert = Alerts[i];
@@ -81,6 +96,10 @@ export class AlertCalculatorService {
         let newDate:Date;
         newDate.setDate(this.today.getDate() - 5)
 
+        if(Alerts == null){
+            return 0;
+        }
+
         for(var i = 0; i <  Alerts.length; i++){
             let alert = Alerts[i];
             if(alert.createdOn.getDay == newDate.getDay 
@@ -95,6 +114,10 @@ export class AlertCalculatorService {
     public daySeven(Alerts: Alert[]){
         let newDate:Date;
         newDate.setDate(this.today.getDate() - 6)
+
+        if(Alerts == null){
+            return 0;
+        }
 
         for(var i = 0; i <  Alerts.length; i++){
             let alert = Alerts[i];
