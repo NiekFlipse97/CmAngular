@@ -3,6 +3,9 @@ import { ControlCheck } from '../control-check-model';
 import { ControlCheckService } from '../control-check.service';
 import { ActivatedRoute } from '@angular/router';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { AlertCalculatorService } from '../../../services/alert-calculator.service';
+import { Alert } from '../alert.model';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-control-check-details',
@@ -17,7 +20,8 @@ export class ControlCheckDetailsComponent implements OnInit {
 
   constructor(
     private service: ControlCheckService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alertCalculatorservice: AlertCalculatorService
   ){
     this.chartConfig = {
       width: '450',
