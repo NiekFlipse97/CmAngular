@@ -49,10 +49,7 @@ export class ControlCheckDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-  
-
       this.getInfo();
-    
   }
 
   getInfo(){
