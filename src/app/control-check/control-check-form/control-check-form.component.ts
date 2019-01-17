@@ -94,18 +94,18 @@ export class ControlCheckFormComponent implements OnInit {
 
         this.controlCheckService.createControlCheck(this.controlCheckForm.value.title, this.controlCheckForm.value.description, JSON.parse(query))
             .subscribe((response) => {
+                if (response.status === 201) {
+                    varList = [];
+                    query = '';
+                    this.route.navigate(['..']);
+                    return;
+                }
 
                 if (response.error.code === 400) {
                     console.log(response);
                     console.log('inside the error');
                     this.openSnackBar('The condition is invalid', 'Close');
                     return;
-                }
-
-                if (response.status === 201) {
-                    varList = [];
-                    query = '';
-                    this.route.navigate(['..']);
                 }
             });
     }
