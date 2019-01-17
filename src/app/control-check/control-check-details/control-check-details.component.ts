@@ -39,7 +39,7 @@ export class ControlCheckDetailsComponent implements OnInit {
         },
         "data": [{
           "label": "7 day ago",
-          "value": "2"
+          "value": alertCalculatorservice.daySeven()
         }, {
           "label": "6 day ago",
           "value": "3"
