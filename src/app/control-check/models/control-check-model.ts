@@ -2,7 +2,7 @@ import { Alert } from './alert.model';
 
 export class ControlCheck {
     _id?: string;
-    title: string;
+    name: string;
     description: string;
     condition: JSON;
     alerts: Alert[];

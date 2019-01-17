@@ -10,25 +10,16 @@ import { Alert } from '../models/alert.model';
 export class ControlCheckAlertsComponent implements OnInit {
 
   @Input() check: ControlCheck;
-  alerts: Alert[] = [{
-    merchantAmount: 1000,
-    currency: 'USD',
-    paymentMethod: 'IDEAL',
-    buyerName: 'Frank',
-    merchantName: 'Pete',
-    organizationName: 'Avans',
-    mcc: 123,
-    createdOn: new Date('2019-08-09')
-  }];
+  
+  alerts: Alert[];
 
-  // alerts: Alert[] = this.controlCheck.alerts;
-
-  alertsAmount: number = this.alerts.length;
+  alertsAmount: number;
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.check);
+    this.alerts = this.check.alerts;
+    this.alertsAmount = this.alerts.length;
   }
 
 }
