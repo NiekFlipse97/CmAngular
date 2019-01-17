@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FormArray } from '@angular/forms';
-import { Variable } from '../../../models/Variable.model';
-import { ControlCheckService } from '../control-check.service';
-import { NoSqlBuilderService } from 'src/services/no-sql-builder.service';
+import { Variable } from '../models/Variable.model';
+import { ControlCheckService } from '../services/control-check.service';
+import { NoSqlBuilderService } from '../services/no-sql-builder.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -94,18 +94,19 @@ export class ControlCheckFormComponent implements OnInit {
 
         this.controlCheckService.createControlCheck(this.controlCheckForm.value.title, this.controlCheckForm.value.description, JSON.parse(query))
             .subscribe((response) => {
+                console.log(response);
+                if (response.error === undefined) {
+                    varList = [];
+                    query = '';
+                    this.route.navigate(['..']);
+                    return;
+                }
 
                 if (response.error.code === 400) {
                     console.log(response);
                     console.log('inside the error');
                     this.openSnackBar('The condition is invalid', 'Close');
                     return;
-                }
-
-                if (response.status === 201) {
-                    varList = [];
-                    query = '';
-                    this.route.navigate(['..']);
                 }
             });
     }

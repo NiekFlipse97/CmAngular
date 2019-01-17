@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ControlCheck } from '../control-check-model';
-import { Alert } from '../alert.model';
+import { ControlCheck } from '../models/control-check-model';
+import { Alert } from '../models/alert.model';
 
 @Component({
   selector: 'app-control-check-alerts',
@@ -9,23 +9,17 @@ import { Alert } from '../alert.model';
 })
 export class ControlCheckAlertsComponent implements OnInit {
 
-  @Input() controlCheck: ControlCheck;
-    alerts: Alert[] = [{
-    merchantAmount: 1000,
-    currency: 'USD',
-    paymentMethod: 'IDEAL',
-    buyerName: 'Frank',
-    merchantName: 'Pete',
-    organizationName: 'Avans',
-    mcc: 123,
-    createdOn: new Date('2019-08-09')
-  }];
+  @Input() check: ControlCheck;
+  
+  alerts: Alert[];
 
-  alertsAmount: number = this.alerts.length;
+  alertsAmount: number;
 
   constructor() { }
 
   ngOnInit() {
+    this.alerts = this.check.alerts;
+    this.alertsAmount = this.alerts.length;
   }
 
 }

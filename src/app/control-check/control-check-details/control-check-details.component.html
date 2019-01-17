@@ -5,10 +5,10 @@
       </div>
 
   <div class="card-title">
-    <h3>{{ controlCheck.name   }}</h3>
-  <br/>
+    <h3>{{ controlCheck?.name }}</h3>
+    <br />
     <div class="card-content">
-      <h4>{{ controlCheck.description }}</h4>
+      <h4>{{ controlCheck?.description }}</h4>
     </div>
 
 
@@ -24,4 +24,4 @@
   </div>
 </div>
 
-<app-control-check-alerts></app-control-check-alerts>
+<app-control-check-alerts *ngIf="controlCheck" [check]="controlCheck"></app-control-check-alerts>

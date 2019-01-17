@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { ControlCheck } from "./control-check-model";
+import { Injectable } from '@angular/core';
+import { ControlCheck } from "../models/control-check-model";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { config } from "src/assets/config";
@@ -16,8 +16,11 @@ export class ControlCheckService {
      * Get a single ControlCheck by it's id.
      * @param id The id of the ControlCheck
      */
-    getControlCheck(id: string) {
-        return this.http.get<ControlCheck>(`${config.apiUrl}/api/checks/${id}`);
+    getControlCheck(id: string): Observable<ControlCheck> {
+        return this.http.get<ControlCheck>(`${config.apiUrl}/api/checks/${id}`)
+            .pipe(
+                map((result) => new ControlCheck(result))
+            );
     }
 
     /**
