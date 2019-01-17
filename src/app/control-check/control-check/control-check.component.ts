@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlCheckService } from '../control-check.service';
+import { ControlCheckService } from '../services/control-check.service';
 import { Observable } from 'rxjs';
-import { ControlCheck } from '../control-check-model';
+import { ControlCheck } from '../models/control-check-model';
 
 @Component({
   selector: 'app-control-check',
@@ -9,7 +9,6 @@ import { ControlCheck } from '../control-check-model';
   styleUrls: ['./control-check.component.scss']
 })
 export class ControlCheckComponent implements OnInit {
-  
   controlChecks$: Observable<ControlCheck[]>;
 
   constructor(

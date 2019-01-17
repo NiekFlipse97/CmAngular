@@ -13,9 +13,9 @@ import { AuthService } from './components/auth/auth.service';
 import { AuthGuard } from './components/auth/auth-guard.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ControlCheckModule } from './control-check/control-check.module';
-import { ControlCheckService } from './control-check/control-check.service';
+import { ControlCheckService } from './control-check/services/control-check.service';
 import { HttpInterceptor } from './shared/http.interceptor';
-import { NoSqlBuilderService } from 'src/services/no-sql-builder.service';
+import { NoSqlBuilderService } from './control-check/services/no-sql-builder.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 

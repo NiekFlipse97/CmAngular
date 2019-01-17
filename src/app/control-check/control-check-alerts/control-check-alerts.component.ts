@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ControlCheck } from '../control-check-model';
-import { Alert } from '../alert.model';
+import { ControlCheck } from '../models/control-check-model';
+import { Alert } from '../models/alert.model';
 
 @Component({
   selector: 'app-control-check-alerts',

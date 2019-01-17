@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FormArray } from '@angular/forms';
-import { Variable } from '../../../models/Variable.model';
-import { ControlCheckService } from '../control-check.service';
-import { NoSqlBuilderService } from 'src/services/no-sql-builder.service';
+import { Variable } from '../models/Variable.model';
+import { ControlCheckService } from '../services/control-check.service';
+import { NoSqlBuilderService } from '../services/no-sql-builder.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

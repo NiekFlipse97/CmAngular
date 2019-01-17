@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlCheck } from '../control-check-model';
-import { ControlCheckService } from '../control-check.service';
+import { ControlCheck } from '../models/control-check-model';
+import { ControlCheckService } from '../services/control-check.service';
 import { ActivatedRoute } from '@angular/router';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 

@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { ControlCheck } from "./control-check-model";
+import { Injectable } from '@angular/core';
+import { ControlCheck } from "../models/control-check-model";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { config } from "src/assets/config";
