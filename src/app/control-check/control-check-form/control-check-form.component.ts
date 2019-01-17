@@ -5,6 +5,7 @@ import { Variable } from '../../../models/Variable.model';
 import { ControlCheckService } from '../control-check.service';
 import { NoSqlBuilderService } from 'src/services/no-sql-builder.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-control-check-form',
@@ -18,7 +19,8 @@ export class ControlCheckFormComponent implements OnInit {
         private fb: FormBuilder,
         private nosqlstatementservice: NoSqlBuilderService,
         private controlCheckService: ControlCheckService,
-        private route: Router
+        private route: Router,
+        private snackBar: MatSnackBar
     ) { }
 
     ngOnInit() {
@@ -90,15 +92,28 @@ export class ControlCheckFormComponent implements OnInit {
         }
         query = this.nosqlstatementservice.createStatement(varList);
 
-        console.log(query);
         this.controlCheckService.createControlCheck(this.controlCheckForm.value.title, this.controlCheckForm.value.description, JSON.parse(query))
             .subscribe((response) => {
-                if (response) {
+
+                if (response.error.code === 400) {
                     console.log(response);
+                    console.log('inside the error');
+                    this.openSnackBar('The condition is invalid', 'Close');
+                    return;
+                }
+
+                if (response.status === 201) {
                     varList = [];
                     query = '';
                     this.route.navigate(['..']);
                 }
             });
+    }
+
+    openSnackBar(message: string, action: string) {
+        this.snackBar.open(message, action, {
+            duration: 5000,
+            verticalPosition: 'top'
+        });
     }
 }

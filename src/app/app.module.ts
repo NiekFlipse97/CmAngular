@@ -16,6 +16,8 @@ import { ControlCheckModule } from './control-check/control-check.module';
 import { ControlCheckService } from './control-check/control-check.service';
 import { HttpInterceptor } from './shared/http.interceptor';
 import { NoSqlBuilderService } from 'src/services/no-sql-builder.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,9 +32,11 @@ import { NoSqlBuilderService } from 'src/services/no-sql-builder.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ControlCheckModule
+    ControlCheckModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
-  providers: [AuthService, AuthGuard, ControlCheckService, NoSqlBuilderService, { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }], 
+  providers: [AuthService, AuthGuard, ControlCheckService, NoSqlBuilderService, { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
