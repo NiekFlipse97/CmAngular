@@ -1,0 +1,33 @@
+<div id="check-alerts" class="col-sm-10 col-md-10 col-lg-9 elevated-card">
+  <div class="card-title">
+    <h3>Alerts</h3>
+  </div>
+  <div class="card-content">
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Amount</th>
+              <th scope="col">Currency</th>
+              <th scope="col">Payment Method</th>
+              <th scope="col">Buyer</th>
+              <th scope="col">Merchant</th>
+              <th scope="col">Organization</th>
+              <th scope="col">MCC</th>
+              <th scope="col">Created On</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let alert of alerts">
+              <td>{{ alert.merchantAmount }}</td>
+              <td>{{ alert.currency }}</td>
+              <td>{{ alert.paymentMethod }}</td>
+              <td>{{ alert.buyerName }}</td>
+              <td>{{ alert.merchantName }}</td>
+              <td>{{ alert.organizationName }}</td>
+              <td>{{ alert.mcc }}</td>
+              <td>{{ alert.createdOn | date:mediumDate }}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+</div>

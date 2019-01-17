@@ -18,7 +18,7 @@ export class HttpInterceptor implements HttpInterceptor {
             });
 
             return next.handle(copiedReq);
-        }  
+        } 
 
         return next.handle(req);
     }
