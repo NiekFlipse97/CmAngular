@@ -82,7 +82,7 @@ export class ControlCheckFormComponent implements OnInit {
         variable.controls.value.setValue(targetValue);
     }
 
-    save() {
+    onSubmit() {
         let varList: Variable[] = [];
         let query = '';
 
