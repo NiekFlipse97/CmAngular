@@ -41,12 +41,12 @@
                             <div class="form-input">
                                 <select class="form-control" id="columnSelect" data-component="cm-select" (change)="setColumnValue($event.target.value, variable)">
                                     <option value="">Select value</option>
-                                    <option value="Seller">Seller</option>
-                                    <option value="Buyer">Buyer</option>
-                                    <option value="MerchantAmount">Amount</option>
-                                    <option value="PaymentCreatedOn">Date</option>
-                                    <option value="Product-type">Product type code</option>
-                                    <option value="Country">Country</option>
+                                    <option value="Merchants.Name">Seller</option>
+                                    <option value="Orders.BuyerName">Buyer</option>
+                                    <option value="Payments.MerchantAmount">Amount</option>
+                                    <option value="Payments.PaymentCreatedOn">Date</option>
+                                    <option value="Merchants.MerchantCatergoryCode">Product type code</option>
+                                    <option value="Orders.BuyerBillingCountry">Country</option>
                                 </select>
                                 <span class="cm-icon cm-icon-open-vertical" aria-hidden="true"></span>
                             </div>
