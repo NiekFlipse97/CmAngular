@@ -94,7 +94,8 @@ export class ControlCheckFormComponent implements OnInit {
 
         this.controlCheckService.createControlCheck(this.controlCheckForm.value.title, this.controlCheckForm.value.description, JSON.parse(query))
             .subscribe((response) => {
-                if (response.status === 201) {
+                console.log(response);
+                if (response.error === undefined) {
                     varList = [];
                     query = '';
                     this.route.navigate(['..']);
