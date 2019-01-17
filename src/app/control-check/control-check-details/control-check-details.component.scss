@@ -6,7 +6,6 @@
 }
 
 .centered{
-    margin-left: auto !important;
-    margin-right: auto !important;
+    display:flex;justify-content:center;align-items:center;
 }
 
