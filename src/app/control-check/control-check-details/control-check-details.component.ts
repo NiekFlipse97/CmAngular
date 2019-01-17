@@ -37,7 +37,7 @@ export class ControlCheckDetailsComponent implements OnInit {
       dataFormat: 'json',
     };
 
-    this.loadGraphWithDate();
+    this.loadGraphWithDate()
   }
 
   updateCheck() {
@@ -49,14 +49,18 @@ export class ControlCheckDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+  
     this.service.getControlCheck(this.route.snapshot.paramMap.get('id')).subscribe((result: ControlCheck) => {
       this.controlCheck = result;
       this.alerts = result.alerts;
       this.loadGraphWithDate();
+
+      setTimeout(() => {this.ngOnInit()}, 5000)
     });
   }
 
   loadGraphWithDate(){
+    console.log("graph updated")
     this.dataSource = {
       "chart": {
         "caption": "the amount of failed checks of the last week",
@@ -88,6 +92,9 @@ export class ControlCheckDetailsComponent implements OnInit {
         "label": this.today.toDateString(),
         "value": this.alertCalculatorservice.calculateAmountOfAlertOnDay(this.alerts, 0)
       }]
+
     };
+    
+    //setTimeout(() => {this.loadGraphWithDate()}, 5000)
   }
 }
