@@ -15,8 +15,13 @@
     float: left !important;
 }
 
-.elevated-card {
-    padding: 20px;
+.error-message {
+    padding: 0 16px;
+    color: $error-text-color;
+    font-weight: bold;
+}
+.field-error {
+    border: 2px solid $error-border-color !important;
 }
 
 .controlcheckform {
@@ -31,9 +36,23 @@
     }   
 }
 
+.width-100 {
+    width: 100%;
+}
+
+.dialog-footer {
+    position: relative;
+}
+
+.left {
+    position: absolute;
+    left: 0;
+    margin-left: 20px;
+}
+
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     padding: 10px;
 
     .grid-item {

@@ -1,0 +1,12 @@
+@import '../../../assets/variables';
+
+.delete-button{
+    background-color: $button-delete-background-color;
+    color: $button-delete-color;
+}
+
+.centered{
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
