@@ -57,10 +57,7 @@ export class ControlCheckDetailsComponent implements OnInit {
         }]
       };
   }
-
-
-
-  
+   
   updateCheck() {
     alert('UPDATE');
   }
@@ -68,8 +65,6 @@ export class ControlCheckDetailsComponent implements OnInit {
   deleteCheck() {
      this.service.deleteControlCheck(this.controlCheck);
   }
-
-
 
   ngOnInit() {
     this.service.getControlCheck(this.route.snapshot.paramMap.get('id')).subscribe((result) => {

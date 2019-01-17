@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SigninComponent } from './components/auth/signin/signin.component';
 
-import { FormsModule, FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
@@ -36,7 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     MatSnackBarModule
   ],
-  providers: [AuthService, AuthGuard, ControlCheckService, NoSqlBuilderService, { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }],
+  providers: [AuthService, AuthGuard, ControlCheckService, NoSqlBuilderService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

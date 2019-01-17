@@ -9,8 +9,8 @@ import { Alert } from '../models/alert.model';
 })
 export class ControlCheckAlertsComponent implements OnInit {
 
-  @Input() controlCheck: ControlCheck;
-    alerts: Alert[] = [{
+  @Input() check: ControlCheck;
+  alerts: Alert[] = [{
     merchantAmount: 1000,
     currency: 'USD',
     paymentMethod: 'IDEAL',
@@ -21,11 +21,14 @@ export class ControlCheckAlertsComponent implements OnInit {
     createdOn: new Date('2019-08-09')
   }];
 
+  // alerts: Alert[] = this.controlCheck.alerts;
+
   alertsAmount: number = this.alerts.length;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.check);
   }
 
 }
