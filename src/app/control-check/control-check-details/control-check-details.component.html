@@ -1,12 +1,19 @@
 <div id="detail-page" class="col-sm-10 col-md-10 col-lg-9 elevated-card">
   <div class="card-title">
     <h3>{{ controlCheck.name   }}</h3>
+  <br/>
     <div class="card-content">
-      {{ controlCheck.description }}
+      <h4>{{ controlCheck.description }}</h4>
     </div>
 
     <div class="controls">
-      <button routerLink=".." (click)="deleteCheck()" class="btn btn-primary roundBtn">Delete</button>
+      <button routerLink=".." (click)="deleteCheck()" class="btn btn-primary roundBtn button-right delete-button">Disable</button>
     </div>
+
+    <fusioncharts
+    [chartConfig]=chartConfig
+    [dataSource]=dataSource >
+    </fusioncharts>
+
   </div>
 </div>
