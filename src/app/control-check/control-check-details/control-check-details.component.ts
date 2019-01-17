@@ -35,25 +35,25 @@ export class ControlCheckDetailsComponent implements OnInit {
         },
         "data": [{
           "label": "7 day ago",
-          "value": "290"
+          "value": "2"
         }, {
           "label": "6 day ago",
-          "value": "260"
+          "value": "3"
         }, {
           "label": "5 day ago",
-          "value": "180"
+          "value": "4"
         }, {
           "label": "4 day ago",
-          "value": "140"
+          "value": "8"
         }, {
           "label": "3 day ago",
-          "value": "115"
+          "value": "2"
         }, {
           "label": "yesterday",
-          "value": "100"
+          "value": "1"
         }, {
           "label": "today",
-          "value": "30"
+          "value": "3"
         }]
       };
   }
